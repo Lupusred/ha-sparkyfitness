@@ -68,3 +68,11 @@ Implementation and documentation are committed in the development history.
 See PROGRESS.md and the GitHub development branch for subsequent delivery status.
 The cloud environment draft now contains reproducible install/start instructions;
 publishing that environment remains a separate user action.
+
+## Public-release preparation
+
+All eight commits through b8103af were scanned with checksum-verified Gitleaks
+8.24.3: no leaks found. The 80 tests, Ruff and Bandit passed again; 39 internal
+documentation links were checked. Public HACS validation is still pending because
+GitHub denied changing visibility through the connected integration. PR #1 and
+release draft 435813141 are prepared; publication is not claimed.

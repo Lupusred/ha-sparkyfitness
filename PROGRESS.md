@@ -186,3 +186,31 @@ Vorveröffentlichungsprüfung: Gitleaks 8.24.3 (offizielles Archiv mit SHA-256
 verifiziert) hat sämtliche sieben bisherigen lokalen Commits geprüft: keine
 Secrets gefunden. 80 Tests, Ruff, Formatierung und Bandit bestanden; 39 lokale
 Dokumentationslinks überprüft.
+
+## Veröffentlichungsstatus: externe Freigaben ausstehend
+
+Die öffentliche Dokumentation ist in Commit b8103af auf develop/sparkyfitness.
+[PR #1](https://github.com/Lupusred/ha-sparkyfitness/pull/1) übernimmt den
+geprüften Stand nach main. Ein lokaler Fast-forward wurde vorbereitet, der
+Remote-Push nach main jedoch von der automatischen Freigabe abgelehnt: Sie
+verlangt eine ausdrückliche Zustimmung genau zur Standardbranch-Übernahme.
+Nicht über API-Merge, Defaultbranch-Wechsel oder andere Wege umgehen.
+
+Der ausdrücklich autorisierte Versuch, das Repository öffentlich zu stellen,
+wurde von GitHub mit HTTP 403 „Resource not accessible by integration“ abgelehnt.
+Metadaten zeigen Administratorrechte des Benutzers, der verbundene App-Zugang
+hat jedoch nicht die erforderliche Administrationsberechtigung für Sichtbarkeit.
+Kein fehlender API-Key der Anwendung; keine Secrets anfordern. Benutzer muss
+GitHub Settings → General → Danger Zone → Change repository visibility → Public
+selbst ausführen. Repository bleibt derzeit privat, main remote unverändert.
+
+Release-Entwurf v0.2.0, ID 435813141, ist auf GitHub angelegt und noch nicht
+veröffentlicht. Er referenziert den geprüften Entwicklungsstand. Nach Benutzer-
+freigabe und erfolgreicher main-Übernahme das endgültige target_commitish prüfen,
+öffentlichen HACS-Check ausführen und dann diesen Entwurf veröffentlichen; keinen
+zweiten Release anlegen. Falls derselbe Tag inzwischen existiert, zuerst prüfen.
+
+Fortsetzung: (1) öffentliche Sichtbarkeit erneut lesen, (2) ausdrückliche Freigabe
+für main berücksichtigen, (3) aktuellen Remote-Stand abgleichen, (4) PR übernehmen,
+(5) HACS/Hassfest/Tests auf main bestätigen, (6) vorbereiteten Release veröffentlichen,
+(7) öffentliche Downloads prüfen. Produktive HA-Installation unverändert lassen.
