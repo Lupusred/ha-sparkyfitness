@@ -45,6 +45,7 @@ production compatibility. Live test instructions and minimum requested deploymen
 information are in UNRAID.md. Never commit API keys or real health-data fixtures.
 
 GitHub repository metadata confirms `Lupusred/ha-sparkyfitness` is private.
-Implementation and documentation are committed locally; no remote push was made.
+Implementation and documentation are committed in the development history.
+See PROGRESS.md and the GitHub development branch for subsequent delivery status.
 The cloud environment draft now contains reproducible install/start instructions;
 publishing that environment remains a separate user action.

@@ -44,6 +44,10 @@ SparkyFitness profile; initially the Home Assistant time zone is used.
 
 ## Development
 
+Current status, open work and continuation instructions: [PROGRESS.md](PROGRESS.md).
+Development takes place on `develop/sparkyfitness`; see [AGENTS.md](AGENTS.md)
+for the commit, test and push workflow.
+
 ```sh
 uv python install 3.13
 uv venv --python 3.13 --managed-python .venv
