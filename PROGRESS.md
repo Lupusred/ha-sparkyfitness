@@ -2,6 +2,10 @@
 
 Stand: 2026-11-05. Arbeitsbranch: `develop/sparkyfitness`.
 
+Aktueller Auftrag: öffentliche Freigabe, geprüfte Übernahme nach `main` und erster
+HACS-Release ausdrücklich vom Benutzer autorisiert. Ältere Abschnitte über ein
+privates Repository dokumentieren den damaligen Zustand.
+
 ## Ziel und Arbeitsweise
 
 Eine standardmäßig lesende, mit optionalen Schreibaktionen HACS-kompatible Home-Assistant-Integration für
@@ -165,3 +169,20 @@ HACS ausdrücklich übersprungen (privat).
 verfügbar (30 Tage Aufbewahrung). Keine öffentliche Freigabe oder Produktionsänderung.
 Nächster fachlicher Schritt: Benutzer testet gezielt eine Schreibaktion nach
 Aktivierung gemäß docs/WRITING.md. GitHub-Status zukünftiger Commits separat prüfen.
+
+## Schritt 6: öffentliche HACS-Veröffentlichung vorbereiten
+
+Benutzerauftrag: Repository öffentlich stellen und direkt über GitHub/HACS
+nutzbar machen. README als deutschsprachige Projektseite mit offiziellem Logo,
+HACS-Einstieg und klarer Navigation neu erstellt; docs/README.md, INSTALLATION.md
+und CHANGELOG.md ergänzt. Distribution und Unraid-Anleitung für öffentlichen
+Release und Umstieg von manueller Installation aktualisiert.
+Vor Freigabe: komplette Git-Historie auf Secrets prüfen, lokale Suite ausführen.
+Danach: Sichtbarkeit ändern, geprüften Stand nach main übernehmen, öffentlichen
+HACS-Validator prüfen und v0.2.0 mit Installations-ZIP veröffentlichen.
+Keine Änderungen an der produktiven HA-Installation.
+
+Vorveröffentlichungsprüfung: Gitleaks 8.24.3 (offizielles Archiv mit SHA-256
+verifiziert) hat sämtliche sieben bisherigen lokalen Commits geprüft: keine
+Secrets gefunden. 80 Tests, Ruff, Formatierung und Bandit bestanden; 39 lokale
+Dokumentationslinks überprüft.

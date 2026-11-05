@@ -66,5 +66,6 @@ unredacted. No upstream production code was changed during this review.
 
 For a suspected vulnerability do not post credentials, personal data or a working
 exploit publicly. Use GitHub's private vulnerability reporting if enabled for the
-repository, or contact the repository owner privately first. This repository is
-currently private; public distribution is a separate decision.
+repository, or contact the repository owner privately first. Public distribution was explicitly requested by the repository owner.
+Before publication, the complete local Git history is checked for secrets;
+this does not replace careful review of future contributions.

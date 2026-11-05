@@ -23,10 +23,9 @@ untersuchten 1.11.0-API und Netzwerkzugriff von Home Assistant auf SparkyFitness
 
 1. Falls HACS bereits vorhanden ist: HACS öffnen → Menü → Benutzerdefinierte
    Repositories → `https://github.com/Lupusred/ha-sparkyfitness` hinzufügen,
-   Kategorie **Integration**. Dieser Standardweg setzt ein öffentlich erreichbares
-   Repository voraus; das aktuelle Repository ist privat. Bis zur bewussten
-   Veröffentlichung die manuelle Installation bzw. die GitHub-Artefakte verwenden.
-2. SparkyFitness herunterladen. Für den späteren öffentlichen HACS-Weg siehe DISTRIBUTION.md.
+   Kategorie **Integration**. Das Repository wird als HACS Custom Repository
+   bereitgestellt; eine Aufnahme in den Standardkatalog ist nicht erforderlich.
+2. SparkyFitness herunterladen. Für den Wechsel von manueller Installation zu HACS siehe INSTALLATION.md.
 3. Home Assistant über seine Neustartfunktion neu starten; falls erforderlich
    den bestehenden HA-Container in Unraid neu starten. Kein Container-Neuaufbau.
 
