@@ -15,6 +15,12 @@
         "data": {
           "api_key": "API-Schlüssel"
         }
+      },
+      "reconfigure": {
+        "title": "API-Schlüssel ersetzen",
+        "data": {
+          "api_key": "API-Schlüssel"
+        }
       }
     },
     "error": {
@@ -25,7 +31,8 @@
     },
     "abort": {
       "already_configured": "Dieses Serverkonto ist bereits eingerichtet.",
-      "reauth_successful": "API-Schlüssel aktualisiert."
+      "reauth_successful": "API-Schlüssel aktualisiert.",
+      "reconfigure_successful": "API-Schlüssel aktualisiert."
     }
   },
   "options": {
@@ -33,7 +40,8 @@
       "init": {
         "data": {
           "update_interval": "Aktualisierungsintervall (Minuten)",
-          "time_zone": "Zeitzone für Tageswerte (z. B. Europe/Berlin)"
+          "time_zone": "Zeitzone für Tageswerte (z. B. Europe/Berlin)",
+          "enable_writes": "Schreibaktionen aktivieren (benötigt Schlüssel mit Schreibrechten)"
         }
       }
     },
@@ -159,6 +167,161 @@
       },
       "sodium_goal": {
         "name": "Natrium Tagesziel"
+      }
+    }
+  },
+  "services": {
+    "set_body_measurements": {
+      "name": "Körpermessungen eintragen",
+      "description": "Nur übergebene Felder für einen Tag setzen (kg, cm, %, Schritte, bpm, gemessener BMR in kcal). Bestehende Werte dieser Felder werden ersetzt.",
+      "fields": {
+        "config_entry_id": {
+          "name": "SparkyFitness-Konto"
+        },
+        "date": {
+          "name": "Datum (Standard: heute)"
+        },
+        "weight": {
+          "name": "Gewicht (kg)"
+        },
+        "neck": {
+          "name": "Hals (cm)"
+        },
+        "waist": {
+          "name": "Taille (cm)"
+        },
+        "hips": {
+          "name": "Hüfte (cm)"
+        },
+        "height": {
+          "name": "Größe (cm)"
+        },
+        "body_fat_percentage": {
+          "name": "Körperfett (%)"
+        },
+        "muscle_mass_kg": {
+          "name": "Muskelmasse (kg)"
+        },
+        "bone_mass_kg": {
+          "name": "Knochenmasse (kg)"
+        },
+        "body_water_percentage": {
+          "name": "Körperwasser (%)"
+        },
+        "steps": {
+          "name": "Schritte"
+        },
+        "resting_heart_rate": {
+          "name": "Ruhepuls (bpm)"
+        },
+        "bmr": {
+          "name": "Gemessener BMR (kcal)"
+        }
+      }
+    },
+    "record_custom_measurement": {
+      "name": "Eigene Messung eintragen",
+      "description": "Vorhandene Kategorie-ID und deren Einheit verwenden. Tägliche/stündliche HA-Einträge werden aktualisiert; All/Unlimited legt einen neuen Eintrag an.",
+      "fields": {
+        "config_entry_id": {
+          "name": "SparkyFitness-Konto"
+        },
+        "date": {
+          "name": "Datum (Standard: heute)"
+        },
+        "category_id": {
+          "name": "Kategorie-UUID"
+        },
+        "value": {
+          "name": "Wert in Kategorieeinheit"
+        },
+        "hour": {
+          "name": "Lokale Stunde (stündliche Kategorie)"
+        }
+      }
+    },
+    "record_water": {
+      "name": "Wasser eintragen",
+      "description": "Wassermenge in mL erfassen. Dieselbe record_id nur zur Korrektur derselben Messung, sonst neue ID verwenden.",
+      "fields": {
+        "config_entry_id": {
+          "name": "SparkyFitness-Konto"
+        },
+        "date": {
+          "name": "Datum (Standard: heute)"
+        },
+        "amount_ml": {
+          "name": "Wasser (mL)"
+        },
+        "record_id": {
+          "name": "Stabile Messungs-ID"
+        }
+      }
+    },
+    "record_sleep": {
+      "name": "Schlaf eintragen",
+      "description": "Einschlaf- und Aufwachzeit mit UTC-Offset eintragen. Keine erfundenen Schlafphasen oder Bewertung. Vor erneutem Senden in SparkyFitness prüfen.",
+      "fields": {
+        "config_entry_id": {
+          "name": "SparkyFitness-Konto"
+        },
+        "date": {
+          "name": "Datum (Standard: heute)"
+        },
+        "bedtime": {
+          "name": "Einschlafzeit (ISO, mit UTC-Offset)"
+        },
+        "wake_time": {
+          "name": "Aufwachzeit (ISO, mit UTC-Offset)"
+        }
+      }
+    },
+    "log_food": {
+      "name": "Lebensmittel eintragen",
+      "description": "Verzehrte Menge einer bestehenden Lebensmittelvariante in deren Portionseinheit erfassen. Erneutes Senden erzeugt einen weiteren Eintrag.",
+      "fields": {
+        "config_entry_id": {
+          "name": "SparkyFitness-Konto"
+        },
+        "date": {
+          "name": "Datum (Standard: heute)"
+        },
+        "food_id": {
+          "name": "Lebensmittel-UUID"
+        },
+        "variant_id": {
+          "name": "Varianten-UUID"
+        },
+        "quantity": {
+          "name": "Menge"
+        },
+        "unit": {
+          "name": "Portionseinheit"
+        },
+        "meal_type": {
+          "name": "Mahlzeittyp"
+        }
+      }
+    },
+    "log_exercise": {
+      "name": "Training eintragen",
+      "description": "Bestehende Übung mit Dauer und erfasstem Kalorienverbrauch eintragen. Erneutes Senden erzeugt einen weiteren Eintrag.",
+      "fields": {
+        "config_entry_id": {
+          "name": "SparkyFitness-Konto"
+        },
+        "date": {
+          "name": "Datum (Standard: heute)"
+        },
+        "exercise_id": {
+          "name": "Übungs-UUID"
+        },
+        "duration_minutes": {
+          "name": "Dauer (Minuten)"
+        },
+        "calories_burned": {
+          "name": "Erfasste Kalorien (kcal)"
+        }
       }
     }
   }

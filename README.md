@@ -1,9 +1,9 @@
 # SparkyFitness for Home Assistant
 
-Read-only, asynchronous Home Assistant custom integration for a self-hosted
+Asynchronous Home Assistant custom integration for a self-hosted
 [SparkyFitness](https://github.com/CodeWithCJ/SparkyFitness) server.
 
-**Version 0.1.0 — initial release candidate.** Developed against the v1.11.0 API;
+**Version 0.2.0 — optional write actions.** Developed against the v1.11.0 API;
 synthetic tests use Home Assistant 2026.2.3 / Python 3.13. No production-instance
 or real Garmin-data validation has been performed. Older SparkyFitness releases
 may expose fewer endpoints. This repository is installable as a HACS custom
@@ -18,9 +18,10 @@ repository; it is not included in the default HACS catalogue.
 - Automatic discovery of custom categories, including imported Garmin metrics.
 - German and English UI; configurable IANA calendar time zone.
 - Expired-key reauthentication, timeout handling and HTTP 429 backoff.
-- GET requests only. TLS verification enabled; local HTTP supported.
+- Read access by default; six explicitly enabled admin write actions.
+- TLS verification enabled; local HTTP supported.
 
-See [sensor/API documentation](docs/API.md),
+See [write actions and examples](docs/WRITING.md), [sensor/API documentation](docs/API.md),
 [Unraid installation](docs/UNRAID.md), and [validation](docs/VALIDATION.md).
 
 ## Installation
@@ -60,8 +61,8 @@ uv pip install --python .venv/bin/python -r requirements-dev.txt
 Tests never need real credentials. They use Home Assistant's custom-component
 test plugin and synthetic HTTP responses. `api.py` owns HTTP/authentication,
 `data.py` transforms responses, `coordinator.py` owns scheduling and calendar dates,
-and `sensor.py` registers entities. Future write support should use a separate,
-explicitly enabled service layer; this version exposes no write services.
+and `sensor.py` registers entities. `services.py` provides a separate, explicitly enabled write layer.
+Read sensors never trigger automatic writes.
 
 ## Privacy
 

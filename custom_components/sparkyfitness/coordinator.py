@@ -1,5 +1,6 @@
 """Account-isolated polling and local calendar-day handling."""
 
+import asyncio
 import logging
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
@@ -25,6 +26,7 @@ class SparkyCoordinator(DataUpdateCoordinator):
         self.user_id = entry.data["user_id"]
         self.zone = ZoneInfo(entry.options.get(CONF_TIME_ZONE, hass.config.time_zone))
         self.day = None
+        self.write_lock = asyncio.Lock()
 
     def today(self):
         return datetime.now(self.zone).date().isoformat()

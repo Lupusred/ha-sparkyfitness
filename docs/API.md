@@ -39,7 +39,8 @@ changing account is rejected. Different URL aliases represent different servers.
 
 ## Implemented requests
 
-All paths below are relative to the supplied server URL and use GET only.
+The read paths below are relative to the supplied server URL and use GET.
+For the separate opt-in write layer, see [WRITING.md](WRITING.md).
 
 | Endpoint | Actual response / use |
 |---|---|
@@ -112,7 +113,8 @@ records; naps and stages from multiple records are not combined.
 
 ## Limits and unsupported features
 
-- No writes, Garmin sync triggers, OAuth login or family impersonation.
+- No Garmin sync triggers, OAuth login or family impersonation.
+- Writes are opt-in from 0.2.0; computed sensors are never written back.
 - No raw Garmin time series, ECG, GPS routes, workout set details or sleep-stage
   timeline entities. Imported numeric categories can expose available summaries.
 - No custom *nutrient* discovery yet; custom *measurement* discovery is supported.
@@ -126,3 +128,17 @@ records; naps and stages from multiple records are not combined.
   should resolve duplicate/provider unit inconsistencies in SparkyFitness.
 - Actual user deployment version, network reachability and live payload
   compatibility still need the bounded live test described in UNRAID.md.
+
+## Write contract added in 0.2.0
+
+Verified in the same pinned source: POST `/api/measurements/check-in` updates
+only provided whitelisted fields (`models/measurementRepository.ts`). POST
+`/api/measurements/custom-entries` validates category ownership server-side;
+Daily/Hourly upserts are source-scoped, All/Unlimited inserts. POST
+`/api/measurements/health-data` receives a single `water` record with a source ID;
+per-record `processed`, `errors`, `skipped` must confirm success even for HTTP 200.
+POST `/api/sleep/manual_entry` takes start/end/duration. POST `/api/food-entries`
+and `/api/exercise-entries` create diary entries using existing library IDs.
+The generic health ingestion route is never exposed for arbitrary types: Workout
+can perform source/range cleanup and Nutrition maps unknown providers to Health
+Connect in this upstream version. We deliberately use the dedicated diary routes.

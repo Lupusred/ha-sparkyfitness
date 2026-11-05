@@ -1,4 +1,4 @@
-"""Read-only SparkyFitness transport. Never log credentials or response bodies."""
+"""SparkyFitness transport with explicit, bounded write operations. Never log credentials or response bodies."""
 
 from __future__ import annotations
 
@@ -19,6 +19,14 @@ class InvalidAuth(ApiError):
     """Key invalid, expired, or lacks permission."""
 
 
+class WriteRejected(ApiError):
+    """Server rejected a write, without invalidating read access."""
+
+
+class WriteUncertain(ApiError):
+    """The server may have saved a write; never retry it automatically."""
+
+
 class RateLimited(ApiError):
     """Server retry window is still active."""
 
@@ -26,6 +34,8 @@ class RateLimited(ApiError):
 def normalize_url(value: str) -> str:
     """Accept server origins and reverse-proxy prefixes, never embedded secrets."""
     try:
+        if any(ord(c) < 32 for c in value):
+            raise ValueError
         parts = urlsplit(value.strip())
         _ = parts.port
         if (
@@ -55,16 +65,38 @@ class SparkyClient:
         self._retry_at = 0.0
 
     async def get(self, path: str, *, params=None, optional=False):
+        return await self._request("GET", path, params=params, optional=optional)
+
+    async def write(self, path: str, payload, user_id: str):
+        """Revalidate account, use only known endpoints, and never retry a POST."""
+        if path not in {
+            "measurements/check-in",
+            "measurements/custom-entries",
+            "measurements/health-data",
+            "sleep/manual_entry",
+            "food-entries",
+            "exercise-entries",
+        }:
+            raise WriteRejected("Unsupported write endpoint")
+        if await self.identity() != user_id:
+            raise InvalidAuth("API key belongs to a different account")
+        return await self._request("POST", path, payload=payload)
+
+    async def _request(self, method, path, *, params=None, optional=False, payload=None):
         if monotonic() < self._retry_at:
             raise RateLimited("API rate limit; waiting for retry window")
         try:
-            async with self.session.get(
+            request = self.session.get if method == "GET" else self.session.post
+            kwargs = {"params": params} if method == "GET" else {"json": payload}
+            async with request(
                 f"{self.url}/api/{path}",
-                params=params,
+                **kwargs,
                 headers={"x-api-key": self._key, "Accept": "application/json"},
                 timeout=aiohttp.ClientTimeout(total=30),
                 allow_redirects=False,
             ) as response:
+                if response.status == 403 and method == "POST":
+                    raise WriteRejected("Write permission denied; use a write-enabled API key")
                 if response.status in (401, 403):
                     raise InvalidAuth("API key rejected or permission denied")
                 if response.status == 429:
@@ -82,10 +114,18 @@ class SparkyClient:
                     raise RateLimited("API rate limit reached")
                 if response.status == 404 and optional:
                     return None
-                if response.status != 200:
+                if method == "POST" and response.status >= 500:
+                    raise WriteUncertain(
+                        "Write outcome unknown; inspect SparkyFitness before retrying"
+                    )
+                if response.status not in ((200,) if method == "GET" else (200, 201)):
                     raise ApiError(f"API returned HTTP {response.status}")
                 return await response.json()
         except (aiohttp.ClientError, asyncio.TimeoutError, ValueError):
+            if method == "POST":
+                raise WriteUncertain(
+                    "Write outcome unknown; inspect SparkyFitness before retrying"
+                ) from None
             raise ApiError("Connection failed or invalid JSON response") from None
 
     async def identity(self) -> str:

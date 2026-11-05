@@ -4,7 +4,7 @@ Stand: 2026-11-05. Arbeitsbranch: `develop/sparkyfitness`.
 
 ## Ziel und Arbeitsweise
 
-Eine ausschließlich lesende, HACS-kompatible Home-Assistant-Integration für
+Eine standardmäßig lesende, mit optionalen Schreibaktionen HACS-kompatible Home-Assistant-Integration für
 SparkyFitness entwickeln. Zuerst eine funktionsfähige Basis, danach abgegrenzte
 Erweiterungen. Jeder funktionsfähige Schritt erhält nach relevanten Prüfungen
 einen eigenen Commit. Änderungen regelmäßig in den Entwicklungsbranch übertragen;
@@ -55,8 +55,9 @@ Details: [VALIDATION.md](docs/VALIDATION.md).
 
 ## Bekannte Grenzen und offene Prüfungen
 
-- Noch kein Live-Test gegen die Installation des Benutzers; kein produktiver
-  Server wurde verändert. Version 0.1.0 ist ein erster getesteter Release-Kandidat.
+- Der Benutzer hat Installation und Lesebetrieb von 0.1.0 erfolgreich bestätigt.
+  Schreibaktionen von 0.2.0 sind ausschließlich synthetisch getestet; kein
+  produktiver Server wurde durch den Agenten verändert.
 - Die API ist anhand SparkyFitness 1.11.0 geprüft; ältere Versionen und weitere
   Home-Assistant-Versionen sind nicht umfassend getestet.
 - Fehlende optionale API-Endpunkte erzeugen keine erfundenen Sensorwerte. Wenn
@@ -69,8 +70,8 @@ Details: [VALIDATION.md](docs/VALIDATION.md).
   sind noch nicht implementiert.
 - Ein zukünftiger jüngster Datensatz einer `All`-Kategorie wird ignoriert;
   es wird nicht nach einem älteren Datensatz gesucht.
-- Keine Schreibfunktionen, Garmin-Synchronisationsauslösung oder historische
-  Rückbefüllung des Home-Assistant-Recorders.
+- Keine Garmin-Synchronisationsauslösung oder historische Rückbefüllung des
+  Home-Assistant-Recorders. Sechs Schreibaktionen sind ab 0.2.0 opt-in verfügbar.
 - Keine derzeit reproduzierten Fehler in der bestandenen Testsuite; die oben
   genannten Grenzen und ungeprüften Deploymentpfade bleiben ausdrücklich offen.
 
@@ -118,3 +119,16 @@ git diff --check
 Module: `api.py` = Transport/Authentifizierung; `data.py` = Transformation;
 `coordinator.py` = Aktualisierung/Datum; `sensor.py` = Entitäten;
 `config_flow.py` = Einrichtung/Optionen/erneute Anmeldung.
+
+## Schritt 4: Schreibaktionen (0.2.0)
+
+Sechs explizite Admin-Aktionen für Körpermessungen, eigene Kategorien, Wasser,
+Schlaf, Ernährung und Training implementiert. Standard aus, Aktivierung pro
+Konto; Reconfigure-Flow erlaubt Austausch eines noch gültigen Leseschlüssels.
+Identität vor jedem Write, feste Endpunkte/Felder, Werte-/Datumsprüfung,
+Kategorienprüfung, pro Konto serialisierte Writes, keine automatischen POST-Retries.
+69 synthetische Tests bestanden; Ruff-Lint/Formatierung geprüft.
+Anleitung: docs/WRITING.md. Nächster Schritt: offizielles Logo/Lizenz,
+Sicherheitsbericht und HACS-/Release-Workflow. Der bisherige HACS-Action-Fehler
+ist diagnostiziert: Der Validator lehnt private Repositories ab; Tests und
+Hassfest des bisherigen GitHub-Laufs waren erfolgreich.
