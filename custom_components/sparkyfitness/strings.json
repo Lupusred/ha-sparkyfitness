@@ -1,0 +1,165 @@
+{
+  "title": "SparkyFitness",
+  "config": {
+    "step": {
+      "user": {
+        "title": "SparkyFitness",
+        "description": "Connect with a read-only API key.",
+        "data": {
+          "url": "Server URL",
+          "api_key": "API key"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Renew API key",
+        "data": {
+          "api_key": "API key"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect or incompatible API response.",
+      "invalid_auth": "API key invalid, expired or permission denied.",
+      "invalid_url": "Enter an HTTP(S) server URL without credentials or query.",
+      "wrong_account": "The key belongs to a different account."
+    },
+    "abort": {
+      "already_configured": "This server account is already configured.",
+      "reauth_successful": "API key updated."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "update_interval": "Update interval (minutes)",
+          "time_zone": "Calendar time zone (e.g. Europe/Berlin)"
+        }
+      }
+    },
+    "error": {
+      "invalid_timezone": "Unknown IANA time zone."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "weight": {
+        "name": "Weight"
+      },
+      "neck": {
+        "name": "Neck"
+      },
+      "waist": {
+        "name": "Waist"
+      },
+      "hips": {
+        "name": "Hips"
+      },
+      "height": {
+        "name": "Height"
+      },
+      "body_fat_percentage": {
+        "name": "Body fat"
+      },
+      "muscle_mass_kg": {
+        "name": "Muscle mass"
+      },
+      "bone_mass_kg": {
+        "name": "Bone mass"
+      },
+      "body_water_percentage": {
+        "name": "Body water"
+      },
+      "steps": {
+        "name": "Steps today"
+      },
+      "bmr": {
+        "name": "Measured basal calories today"
+      },
+      "resting_heart_rate": {
+        "name": "Resting heart rate"
+      },
+      "calories": {
+        "name": "Calories today"
+      },
+      "calories_goal": {
+        "name": "Calorie goal"
+      },
+      "calories_remaining": {
+        "name": "Remaining calories"
+      },
+      "calories_burned": {
+        "name": "Calorie balance expenditure"
+      },
+      "water": {
+        "name": "Water today"
+      },
+      "training_count": {
+        "name": "Training sessions today"
+      },
+      "training_duration": {
+        "name": "Training duration today"
+      },
+      "sleep_duration_in_seconds": {
+        "name": "Sleep record duration"
+      },
+      "sleep_time_asleep_in_seconds": {
+        "name": "Time asleep"
+      },
+      "sleep_sleep_score": {
+        "name": "Sleep score"
+      },
+      "sleep_deep_sleep_seconds": {
+        "name": "Deep sleep"
+      },
+      "sleep_rem_sleep_seconds": {
+        "name": "REM sleep"
+      },
+      "sleep_light_sleep_seconds": {
+        "name": "Light sleep"
+      },
+      "sleep_average_spo2_value": {
+        "name": "Sleep oxygen saturation"
+      },
+      "sleep_avg_overnight_hrv": {
+        "name": "Overnight HRV"
+      },
+      "protein": {
+        "name": "Protein today"
+      },
+      "protein_goal": {
+        "name": "Protein goal"
+      },
+      "carbs": {
+        "name": "Carbohydrates today"
+      },
+      "carbs_goal": {
+        "name": "Carbohydrates goal"
+      },
+      "fat": {
+        "name": "Fat today"
+      },
+      "fat_goal": {
+        "name": "Fat goal"
+      },
+      "dietary_fiber": {
+        "name": "Fiber today"
+      },
+      "dietary_fiber_goal": {
+        "name": "Fiber goal"
+      },
+      "sugars": {
+        "name": "Sugar today"
+      },
+      "sugars_goal": {
+        "name": "Sugar goal"
+      },
+      "sodium": {
+        "name": "Sodium today"
+      },
+      "sodium_goal": {
+        "name": "Sodium goal"
+      }
+    }
+  }
+}

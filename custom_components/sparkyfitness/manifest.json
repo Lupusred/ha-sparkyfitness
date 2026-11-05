@@ -1,0 +1,12 @@
+{
+  "domain": "sparkyfitness",
+  "name": "SparkyFitness",
+  "codeowners": ["@Lupusred"],
+  "config_flow": true,
+  "documentation": "https://github.com/Lupusred/ha-sparkyfitness",
+  "integration_type": "service",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/Lupusred/ha-sparkyfitness/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}

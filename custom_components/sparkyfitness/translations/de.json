@@ -1,0 +1,165 @@
+{
+  "title": "SparkyFitness",
+  "config": {
+    "step": {
+      "user": {
+        "title": "SparkyFitness",
+        "description": "Mit einem API-Schlüssel mit Leserechten verbinden.",
+        "data": {
+          "url": "Server-URL",
+          "api_key": "API-Schlüssel"
+        }
+      },
+      "reauth_confirm": {
+        "title": "API-Schlüssel erneuern",
+        "data": {
+          "api_key": "API-Schlüssel"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Verbindung fehlgeschlagen oder inkompatible API-Antwort.",
+      "invalid_auth": "API-Schlüssel ungültig, abgelaufen oder ohne Berechtigung.",
+      "invalid_url": "HTTP(S)-Server-URL ohne Zugangsdaten oder Abfrageparameter eingeben.",
+      "wrong_account": "Der Schlüssel gehört zu einem anderen Konto."
+    },
+    "abort": {
+      "already_configured": "Dieses Serverkonto ist bereits eingerichtet.",
+      "reauth_successful": "API-Schlüssel aktualisiert."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "update_interval": "Aktualisierungsintervall (Minuten)",
+          "time_zone": "Zeitzone für Tageswerte (z. B. Europe/Berlin)"
+        }
+      }
+    },
+    "error": {
+      "invalid_timezone": "Unbekannte IANA-Zeitzone."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "weight": {
+        "name": "Gewicht"
+      },
+      "neck": {
+        "name": "Halsumfang"
+      },
+      "waist": {
+        "name": "Taillenumfang"
+      },
+      "hips": {
+        "name": "Hüftumfang"
+      },
+      "height": {
+        "name": "Körpergröße"
+      },
+      "body_fat_percentage": {
+        "name": "Körperfett"
+      },
+      "muscle_mass_kg": {
+        "name": "Muskelmasse"
+      },
+      "bone_mass_kg": {
+        "name": "Knochenmasse"
+      },
+      "body_water_percentage": {
+        "name": "Körperwasser"
+      },
+      "steps": {
+        "name": "Schritte heute"
+      },
+      "bmr": {
+        "name": "Gemessener Grundumsatz heute"
+      },
+      "resting_heart_rate": {
+        "name": "Ruhepuls"
+      },
+      "calories": {
+        "name": "Kalorien heute"
+      },
+      "calories_goal": {
+        "name": "Kalorienziel"
+      },
+      "calories_remaining": {
+        "name": "Verbleibende Kalorien"
+      },
+      "calories_burned": {
+        "name": "Verbrauch laut Kalorienbilanz"
+      },
+      "water": {
+        "name": "Wasser heute"
+      },
+      "training_count": {
+        "name": "Trainingseinheiten heute"
+      },
+      "training_duration": {
+        "name": "Trainingsdauer heute"
+      },
+      "sleep_duration_in_seconds": {
+        "name": "Dauer des Schlafeintrags"
+      },
+      "sleep_time_asleep_in_seconds": {
+        "name": "Schlafdauer"
+      },
+      "sleep_sleep_score": {
+        "name": "Schlafbewertung"
+      },
+      "sleep_deep_sleep_seconds": {
+        "name": "Tiefschlaf"
+      },
+      "sleep_rem_sleep_seconds": {
+        "name": "REM-Schlaf"
+      },
+      "sleep_light_sleep_seconds": {
+        "name": "Leichtschlaf"
+      },
+      "sleep_average_spo2_value": {
+        "name": "Sauerstoffsättigung im Schlaf"
+      },
+      "sleep_avg_overnight_hrv": {
+        "name": "Nächtliche HRV"
+      },
+      "protein": {
+        "name": "Protein heute"
+      },
+      "protein_goal": {
+        "name": "Protein Tagesziel"
+      },
+      "carbs": {
+        "name": "Kohlenhydrate heute"
+      },
+      "carbs_goal": {
+        "name": "Kohlenhydrate Tagesziel"
+      },
+      "fat": {
+        "name": "Fett heute"
+      },
+      "fat_goal": {
+        "name": "Fett Tagesziel"
+      },
+      "dietary_fiber": {
+        "name": "Ballaststoffe heute"
+      },
+      "dietary_fiber_goal": {
+        "name": "Ballaststoffe Tagesziel"
+      },
+      "sugars": {
+        "name": "Zucker heute"
+      },
+      "sugars_goal": {
+        "name": "Zucker Tagesziel"
+      },
+      "sodium": {
+        "name": "Natrium heute"
+      },
+      "sodium_goal": {
+        "name": "Natrium Tagesziel"
+      }
+    }
+  }
+}
