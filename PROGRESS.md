@@ -48,8 +48,8 @@ pytest-homeassistant-custom-component 0.13.316.
 - HA-Tests prüfen unter anderem zwei Konten, Entity-Registrierung, dynamische
   Kategorien, Wiederverbindung, Schlüsselwechsel, Polling und Tageswechsel.
 - Bisheriger GitHub-Lauf: Tests und Hassfest erfolgreich. HACS verweigert
-  private Repositories; jetzt ausdrücklich bedingter Skip. Endgültigen neuen
-  GitHub-Lauf nach dem Push prüfen.
+  private Repositories; jetzt ausdrücklich bedingter Skip. Abschließender
+  Implementierungslauf ec7e866: Tests, Ruff, Bandit, Paketbau und Hassfest erfolgreich.
 
 Die Sandbox ließ die asynchrone HA-Testinitialisierung hängen. Über den unterstützten
 Freigabeweg ausgeführte Tests funktionieren. Keine Assertions wurden deaktiviert.
@@ -113,8 +113,9 @@ uv python install 3.13
 uv venv --python 3.13 --managed-python .venv  # nur wenn .venv fehlt
 uv pip install --python .venv/bin/python -r requirements-dev.txt
 .venv/bin/python -m pytest -q --timeout=30
-.venv/bin/ruff check custom_components tests
-.venv/bin/ruff format --check custom_components tests
+.venv/bin/ruff check custom_components tests scripts
+.venv/bin/ruff format --check custom_components tests scripts
+.venv/bin/bandit -r custom_components -q
 git diff --check
 ```
 
@@ -152,3 +153,15 @@ spätere öffentliche HACS-Veröffentlichung und Updates. Kein Add-on nötig.
 Repository weiterhin privat, main unverändert, kein Release veröffentlicht.
 Schreib-Live-Test weiterhin offen; Benutzer muss Schreiboption und passenden
 API-Schlüssel selbst setzen.
+
+## Bestätigte Übergabe 0.2.0
+
+Commits: `9d41a33` (Schreibaktionen), `ec7e866` (Logo, Sicherheitsprüfung,
+Distribution). Beide nach `origin/develop/sparkyfitness` übertragen.
+GitHub-Lauf [42118750136](https://github.com/Lupusred/ha-sparkyfitness/actions/runs/42118750136)
+erfolgreich: Tests inkl. Pakettests, Ruff, Bandit, Artifact-Upload und Hassfest.
+HACS ausdrücklich übersprungen (privat).
+[Installationsartefakt sparkyfitness-0.2.0](https://github.com/Lupusred/ha-sparkyfitness/actions/runs/42118750136/artifacts/13456273662)
+verfügbar (30 Tage Aufbewahrung). Keine öffentliche Freigabe oder Produktionsänderung.
+Nächster fachlicher Schritt: Benutzer testet gezielt eine Schreibaktion nach
+Aktivierung gemäß docs/WRITING.md. GitHub-Status zukünftiger Commits separat prüfen.

@@ -55,8 +55,9 @@ uv python install 3.13
 uv venv --python 3.13 --managed-python .venv
 uv pip install --python .venv/bin/python -r requirements-dev.txt
 .venv/bin/python -m pytest -q
-.venv/bin/ruff check custom_components tests
-.venv/bin/ruff format --check custom_components tests
+.venv/bin/ruff check custom_components tests scripts
+.venv/bin/ruff format --check custom_components tests scripts
+.venv/bin/bandit -r custom_components -q
 ```
 
 Tests never need real credentials. They use Home Assistant's custom-component

@@ -39,7 +39,8 @@ untersuchten 1.11.0-API und Netzwerkzugriff von Home Assistant auf SparkyFitness
    Bei einem Update vorher die vorhandene SparkyFitness-Version sichern.
 3. Kontrolle im Container: `/config/custom_components/sparkyfitness/manifest.json`,
    `__init__.py`, `api.py`, `config_flow.py`, `const.py`, `coordinator.py`, `data.py`,
-   `sensor.py`, `strings.json`, `translations/de.json` und `translations/en.json`
+   `sensor.py`, `services.py`, `services.yaml`, `strings.json`,
+   `translations/de.json`, `translations/en.json` und `brand/`
    müssen vorhanden sein. Keine zusätzliche Verschachtelung `ha-sparkyfitness`.
 4. Home Assistant neu starten. Keine YAML-Konfiguration erforderlich.
 

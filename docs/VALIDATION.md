@@ -13,7 +13,9 @@ All requests use synthetic data. No live writes or production modifications.
 The prior GitHub run for 2901d4b passed tests and Hassfest. HACS validation failed
 because the official action does not validate private repositories. This is now
 an explicit conditional skip until the repository is public, not a claimed pass.
-The final updated GitHub run is tracked in PROGRESS.md.
+GitHub run 42118750136 on ec7e866 also passed the complete tests/lint/security/
+packaging job and Hassfest, and uploaded the installation artifact. HACS was
+explicitly skipped because the repository remains private. See PROGRESS.md.
 
 ## Historical 0.1.0 baseline
 
