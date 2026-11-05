@@ -291,3 +291,102 @@ async def test_post_roundtrip(aiohttp_server, socket_enabled):
             "measurements/custom-entries", {"category_id": ID, "value": 12}, "a"
         )
     assert result["id"] == ID and received == [{"category_id": ID, "value": 12}]
+
+
+async def test_successful_water_and_refresh_failure(hass, loaded):
+    from custom_components.sparkyfitness.api import ApiError
+
+    client = loaded.runtime_data.client
+    with (
+        patch.object(client, "identity", return_value="a"),
+        patch.object(
+            client,
+            "write",
+            return_value={
+                "processed": [{"status": "success", "data": {"id": ID}}],
+                "errors": [],
+                "skipped": [],
+            },
+        ),
+        patch.object(client, "snapshot", side_effect=ApiError("Offline")),
+    ):
+        response = await invoke(hass, loaded, "record_water", amount_ml=250, record_id="test")
+        assert response == {"saved": True, "refresh_successful": False}
+
+
+@pytest.mark.parametrize("result", [{}, {"error": "sensitive"}, [], None])
+async def test_unconfirmed_write_not_success(hass, loaded, result):
+    with (
+        patch.object(loaded.runtime_data.client, "identity", return_value="a"),
+        patch.object(loaded.runtime_data.client, "write", return_value=result),
+    ):
+        with pytest.raises(ServiceValidationError) as err:
+            await invoke(hass, loaded, weight=80)
+        assert "sensitive" not in str(err.value)
+
+
+async def test_write_after_unload_rejected(hass, loaded):
+    config_id = loaded.entry_id
+    await hass.config_entries.async_unload(config_id)
+    with pytest.raises(ServiceValidationError, match="loaded"):
+        await invoke(hass, loaded, weight=80)
+
+
+async def test_reconfigure_key_preserves_account(hass, loaded):
+    from homeassistant.data_entry_flow import FlowResultType
+
+    result = await hass.config_entries.flow.async_init(
+        DOMAIN, context={"source": "reconfigure", "entry_id": loaded.entry_id}
+    )
+    assert result["type"] == FlowResultType.FORM
+    with patch(
+        "custom_components.sparkyfitness.config_flow.SparkyClient.identity", return_value="other"
+    ):
+        result = await hass.config_entries.flow.async_configure(
+            result["flow_id"], {"api_key": "test-wrong"}
+        )
+        assert result["errors"]["base"] == "wrong_account"
+    with (
+        patch(
+            "custom_components.sparkyfitness.config_flow.SparkyClient.identity", return_value="a"
+        ),
+        patch.object(hass.config_entries, "async_reload", return_value=True),
+    ):
+        result = await hass.config_entries.flow.async_configure(
+            result["flow_id"], {"api_key": "test-write-key"}
+        )
+        assert result["reason"] == "reconfigure_successful"
+        assert loaded.data["api_key"] == "test-write-key"
+        assert loaded.unique_id == "account-a"
+
+
+async def test_redirect_does_not_forward_key(aiohttp_server, socket_enabled):
+    from aiohttp import web
+
+    from custom_components.sparkyfitness.api import ApiError
+
+    received = []
+
+    async def trap(request):
+        received.append(dict(request.headers))
+        return web.json_response({})
+
+    target = web.Application()
+    target.router.add_route("*", "/trap", trap)
+    target_server = await aiohttp_server(target)
+
+    async def identity(request):
+        return web.json_response({"authenticatedUserId": "a", "activeUserId": "a"})
+
+    async def redirect(request):
+        raise web.HTTPTemporaryRedirect(str(target_server.make_url("/trap")))
+
+    source = web.Application()
+    source.router.add_get("/api/identity/user", identity)
+    source.router.add_post("/api/measurements/check-in", redirect)
+    server = await aiohttp_server(source)
+    async with aiohttp.ClientSession() as session:
+        client = SparkyClient(session, str(server.make_url("")), "test-secret")
+        with pytest.raises(ApiError):
+            await client.write("measurements/check-in", {"weight": 80}, "a")
+    assert received == []

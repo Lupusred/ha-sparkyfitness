@@ -40,14 +40,16 @@ lokal erstellt. Die erste Übertragung enthält diese Historie vollständig.
 Umgebung: Python 3.13.16, Home Assistant 2026.2.3,
 pytest-homeassistant-custom-component 0.13.316.
 
-- 42 Tests bestanden; zuletzt gemessene Statement-Abdeckung: 91 %.
+- Aktuell 80 Tests bestanden; Statement-Abdeckung 89 % (538 Statements).
+  Historischer 0.1.0-Stand: 42 Tests / 91 %.
 - Ruff-Lint und Formatprüfung bestanden.
 - Python-Kompilierung, JSON-/Übersetzungsprüfung und `git diff --check` bestanden.
 - Ein lokaler aiohttp-Testserver prüft echte HTTP-Anfragen mit synthetischen Daten.
 - HA-Tests prüfen unter anderem zwei Konten, Entity-Registrierung, dynamische
   Kategorien, Wiederverbindung, Schlüsselwechsel, Polling und Tageswechsel.
-- HACS-/Hassfest-Actions sind vorbereitet; ein erfolgreicher Lauf auf GitHub ist
-  bislang nicht verifiziert. Das ist vom lokalen Teststatus zu unterscheiden.
+- Bisheriger GitHub-Lauf: Tests und Hassfest erfolgreich. HACS verweigert
+  private Repositories; jetzt ausdrücklich bedingter Skip. Endgültigen neuen
+  GitHub-Lauf nach dem Push prüfen.
 
 Die Sandbox ließ die asynchrone HA-Testinitialisierung hängen. Über den unterstützten
 Freigabeweg ausgeführte Tests funktionieren. Keine Assertions wurden deaktiviert.
@@ -84,7 +86,7 @@ noch zu bestätigen. Keine API-Schlüssel oder persönlichen Messwerte benötigt
 
 ## Nächste Schritte
 
-1. GitHub-Actions des Entwicklungsbranches prüfen; tatsächliche Fehler beheben,
+1. GitHub-Actions des erweiterten Entwicklungsbranches prüfen; tatsächliche Fehler beheben,
    passende lokale Prüfungen ausführen und separat committen/pushen.
 2. Exakte HA-/SparkyFitness-Versionen und Profilzeitzone für den Live-Test klären.
 3. Benutzer führt den begrenzten Installationstest gemäß
@@ -132,3 +134,21 @@ Anleitung: docs/WRITING.md. Nächster Schritt: offizielles Logo/Lizenz,
 Sicherheitsbericht und HACS-/Release-Workflow. Der bisherige HACS-Action-Fehler
 ist diagnostiziert: Der Validator lehnt private Repositories ab; Tests und
 Hassfest des bisherigen GitHub-Laufs waren erfolgreich.
+
+## Schritt 5: Branding, Sicherheit und Distribution
+
+Offizielles Logo unverändert aus dem gepinnten Upstream übernommen; SHA-256
+durch Tests abgesichert. Vollständige nichtkommerzielle Upstream-Lizenz und
+Attribution im brand-Ordner; ursprünglicher Code weiterhin MIT, Grafik ausgenommen.
+SECURITY.md dokumentiert Vertrauensgrenzen, POST-Retry-Risiko, HA-Trace/Recorder-
+Datenschutz und beobachtete Upstream-Protokollierung von Messwerten.
+
+Bandit 1.8.6: keine Befunde. Alle 80 Tests, Ruff und Paketprüfung bestanden.
+Nach Writes wird eine bestätigte Datensatzantwort verlangt; leere/fehlerhafte
+200-Antworten werden nicht als gespeichert gemeldet. CI baut ein reproduzierbares
+Installations-ZIP als GitHub-Artefakt; Dependabot für Entwicklungsabhängigkeiten
+und Actions vorbereitet. docs/DISTRIBUTION.md beschreibt private Downloads,
+spätere öffentliche HACS-Veröffentlichung und Updates. Kein Add-on nötig.
+Repository weiterhin privat, main unverändert, kein Release veröffentlicht.
+Schreib-Live-Test weiterhin offen; Benutzer muss Schreiboption und passenden
+API-Schlüssel selbst setzen.

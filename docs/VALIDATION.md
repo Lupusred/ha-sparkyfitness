@@ -1,4 +1,21 @@
-# Validation report
+# Validation report — 0.2.0
+
+2026-11-05: **80 passed**, 0 failed/skipped, 89% statement coverage
+(538 integration statements). Ruff lint/format, compile checks, package integrity
+and Bandit 1.8.6 static security scan passed (no findings).
+
+New coverage: opt-in writes, admin restriction, foreign account/category rejection,
+value/date validation, HTTP POST round trips, redirect/key isolation, no retry on
+uncertain writes, response confirmation, successful-save/failed-refresh distinction,
+key reconfiguration, official logo hashes and deterministic install ZIP contents.
+All requests use synthetic data. No live writes or production modifications.
+
+The prior GitHub run for 2901d4b passed tests and Hassfest. HACS validation failed
+because the official action does not validate private repositories. This is now
+an explicit conditional skip until the repository is public, not a claimed pass.
+The final updated GitHub run is tracked in PROGRESS.md.
+
+## Historical 0.1.0 baseline
 
 2026-11-05, Python 3.13.16, Home Assistant 2026.2.3,
 pytest-homeassistant-custom-component 0.13.316.

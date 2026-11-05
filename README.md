@@ -28,9 +28,10 @@ See [write actions and examples](docs/WRITING.md), [sensor/API documentation](do
 
 In HACS, add `https://github.com/Lupusred/ha-sparkyfitness` as a custom repository
 of category **Integration**, then download SparkyFitness and restart Home
-Assistant. The repository must be accessible to your HACS GitHub account; private
-repositories require access through HACS-supported authentication. Otherwise use
-the manual installation below. No public listing or release is created by this
+Assistant. The standard HACS distribution path requires a publicly accessible repository.
+This repository is currently private and has not been made public automatically.
+For the current private development version, use a downloaded ZIP/manual update.
+See [installation and release preparation](docs/DISTRIBUTION.md). No public listing or release is created by this
 implementation.
 
 Alternatively, copy `custom_components/sparkyfitness` into your existing Home
@@ -81,3 +82,10 @@ Re-run the tests before upgrading the pinned Home Assistant test package. Verify
 endpoint/response changes against the server source and add synthetic regression
 fixtures. Use semantic release tags and update `manifest.json` for HACS updates.
 Do not publish real fitness-data fixtures or credentials.
+
+## Branding and security
+
+The official SparkyFitness logo is included unchanged with its upstream
+non-commercial license and attribution in `custom_components/sparkyfitness/brand`.
+It is not MIT-licensed artwork and does not imply upstream endorsement.
+See [SECURITY.md](SECURITY.md) for the reviewed boundaries and remaining risks.

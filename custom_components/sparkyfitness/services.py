@@ -231,7 +231,7 @@ def async_register_services(hass):
                     raise ServiceValidationError("API key belongs to a different account")
                 path, payload = await build_write(call.service, call.data, coordinator, entry)
                 result = await coordinator.client.write(path, payload, coordinator.user_id)
-                if not isinstance(result, dict):
+                if not isinstance(result, dict) or not result:
                     raise WriteUncertain(
                         "Write response invalid; inspect SparkyFitness before retrying"
                     )
@@ -244,10 +244,15 @@ def async_register_services(hass):
                         or len(processed) != 1
                         or not isinstance(processed[0], dict)
                         or processed[0].get("status") != "success"
+                        or not processed[0].get("data")
                     ):
                         raise WriteUncertain(
                             "Write not confirmed; inspect SparkyFitness before retrying"
                         )
+                elif not isinstance(result.get("id"), str) or not result["id"]:
+                    raise WriteUncertain(
+                        "Write not confirmed; inspect SparkyFitness before retrying"
+                    )
             except ApiError as err:
                 raise ServiceValidationError(str(err)) from None
             # A successful write must not appear failed just because refresh failed.

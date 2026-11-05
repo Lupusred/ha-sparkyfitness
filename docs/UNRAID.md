@@ -11,7 +11,7 @@ untersuchten 1.11.0-API und Netzwerkzugriff von Home Assistant auf SparkyFitness
    etwa `/mnt/user/appdata/home-assistant`; nicht blind diesen Beispielpfad übernehmen.
 2. Eine Sicherung des bestehenden Konfigurationsverzeichnisses erstellen.
 3. In SparkyFitness → Settings → API Key Management einen eigenen API-Schlüssel
-   mit **Read-only**-Scope und geeigneter Ablaufzeit erzeugen. Die Bezeichnung kann
+   mit **Read-only**-Scope für den Lesebetrieb und geeigneter Ablaufzeit erzeugen. Die Bezeichnung kann
    „Home Assistant“ sein. Schlüssel direkt in HA eingeben, niemals in Git/Chat.
 4. Die SparkyFitness-Web-URL prüfen. Im HA-Container bezeichnet `localhost` den
    HA-Container, nicht SparkyFitness. Meist ist die Unraid-LAN-IP mit dem
@@ -23,10 +23,10 @@ untersuchten 1.11.0-API und Netzwerkzugriff von Home Assistant auf SparkyFitness
 
 1. Falls HACS bereits vorhanden ist: HACS öffnen → Menü → Benutzerdefinierte
    Repositories → `https://github.com/Lupusred/ha-sparkyfitness` hinzufügen,
-   Kategorie **Integration**.
-2. SparkyFitness herunterladen. Bei privatem Repository muss HACS über seinen
-   unterstützten Authentifizierungsweg darauf zugreifen können. Ist das nicht
-   möglich, die manuelle Installation verwenden.
+   Kategorie **Integration**. Dieser Standardweg setzt ein öffentlich erreichbares
+   Repository voraus; das aktuelle Repository ist privat. Bis zur bewussten
+   Veröffentlichung die manuelle Installation bzw. die GitHub-Artefakte verwenden.
+2. SparkyFitness herunterladen. Für den späteren öffentlichen HACS-Weg siehe DISTRIBUTION.md.
 3. Home Assistant über seine Neustartfunktion neu starten; falls erforderlich
    den bestehenden HA-Container in Unraid neu starten. Kein Container-Neuaufbau.
 
@@ -93,3 +93,11 @@ Danach lokal Verbindung, zwei bis drei ausgewählte Werte/Einheiten, eine neue
 Kategorie, einen Poll und einen vorübergehenden Verbindungsfehler prüfen. Zur
 Rückmeldung genügen Erfolg/Fehlerklasse und optional redigierte synthetische
 Antwortstrukturen. Keine Gesundheitswerte oder vollständigen Logs erforderlich.
+
+## Schreiben ab 0.2.0
+
+Der bestehende Lesebetrieb bleibt nach einem Update erhalten. Schreibaktionen
+sind pro Konto ausgeschaltet. Aktivierung, Austausch des API-Schlüssels über
+„Neu konfigurieren“ und Beispiele stehen in [WRITING.md](WRITING.md).
+Keine Automationen auf Basis der bereits eingelesenen SparkyFitness-Sensoren
+pauschal zurückschreiben lassen.
