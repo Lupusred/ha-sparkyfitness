@@ -19,8 +19,11 @@ Ordner `sparkyfitness/`, ohne Tests, Caches oder Zugangsdaten. Das Paket enthäl
 Logo-Lizenz und Attribution. GitHub Actions erstellt es nach den lokalen Checks
 auch als Download-Artefakt mit 30 Tagen Aufbewahrung.
 
-Das Installations-ZIP wird zusätzlich als dauerhafter GitHub-Release-Anhang
-bereitgestellt. HACS verwendet die Repositorystruktur
+Der Workflow `release.yml` erstellt nach Veröffentlichung eines Release dessen
+Installations-ZIP und hängt es dauerhaft an. Er prüft, dass Release-Tag und
+Manifestversion übereinstimmen. Der Upload verwendet ausschließlich GitHubs
+kurzlebiges Workflow-Token; eigene Zugangsdaten sind nicht erforderlich.
+Ein vorhandener Anhang wird nicht stillschweigend überschrieben. HACS verwendet die Repositorystruktur
 `custom_components/sparkyfitness/` am Release-Tag. Deshalb ist `zip_release` in
 `hacs.json` nicht aktiviert; das manuelle ZIP hat einen umschließenden Ordner.
 

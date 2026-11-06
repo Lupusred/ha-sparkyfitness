@@ -214,3 +214,31 @@ Fortsetzung: (1) öffentliche Sichtbarkeit erneut lesen, (2) ausdrückliche Frei
 für main berücksichtigen, (3) aktuellen Remote-Stand abgleichen, (4) PR übernehmen,
 (5) HACS/Hassfest/Tests auf main bestätigen, (6) vorbereiteten Release veröffentlichen,
 (7) öffentliche Downloads prüfen. Produktive HA-Installation unverändert lassen.
+
+Der direkte Upload des Installations-ZIP an den Release-Entwurf wurde mit HTTP
+400 abgelehnt; der Entwurf hat daher noch keinen Paketanhang. Kein identischer
+Upload erneut versucht. Als reproduzierbarer Distributionsweg ist release.yml
+vorbereitet: Nach Veröffentlichung eines Release erzeugt GitHub Actions das ZIP
+aus dessen Tag, prüft die Manifestversion und hängt es mit dem kurzlebigen
+GitHub-Token an. Dieser Workflow benötigt die freigegebene Übernahme nach main
+und ist noch nicht ausgeführt. Aktuelle ZIPs sind weiterhin über Validate-Artefakte
+verfügbar. Der Release-Entwurf muss vor Veröffentlichung auf den finalen Commit
+einschließlich dieses Workflows gesetzt werden.
+
+## Fortsetzung am 2026-11-06 nach Nutzungslimit
+
+GitHub erneut geprüft: Repository ist jetzt öffentlich; PR #1 weiterhin offen
+und mergefähig, Release 435813141 weiterhin Entwurf. Die Sichtbarkeitsblockade
+ist damit erledigt. Die zuvor abgelehnte Übernahme nach main bleibt bis zur
+ausdrücklichen Freigabe genau dieses Schritts ausgesetzt.
+
+Release-Workflow fertiggestellt und mit Actionlint 1.7.7 (offizieller Download,
+SHA-256 verifiziert) ohne Befund geprüft. Der isolierte Pakettest hatte eine
+Importreihenfolge-Abhängigkeit zur gesamten Suite; Schemaimport auf Modulebene
+verschoben. Danach drei Pakettests separat und alle 80 Tests erfolgreich.
+Der Workflow erstellt nach Release-Veröffentlichung das ZIP aus dem Release-Tag
+und lädt es mit GitHubs kurzlebigem Token hoch. Kein produktiver Server geändert.
+
+Nächster Schritt: öffentlichen HACS-Check des gepushten Standes bestätigen,
+ausdrückliche Freigabe der PR-Übernahme nach main erhalten, Release-Entwurf auf
+den endgültigen geprüften Commit setzen und veröffentlichen.

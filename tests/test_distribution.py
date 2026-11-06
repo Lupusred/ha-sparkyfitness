@@ -7,6 +7,7 @@ from zipfile import ZipFile
 
 import yaml
 
+from custom_components.sparkyfitness.services import SCHEMAS
 from scripts.package import package
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -40,8 +41,6 @@ def test_official_artwork_integrity():
 
 
 def test_service_metadata_matches_schema_and_translations():
-    from custom_components.sparkyfitness.services import SCHEMAS
-
     component = ROOT / "custom_components/sparkyfitness"
     metadata = yaml.safe_load((component / "services.yaml").read_text())
     assert set(metadata) == set(SCHEMAS)
