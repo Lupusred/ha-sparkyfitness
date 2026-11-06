@@ -242,3 +242,20 @@ und lädt es mit GitHubs kurzlebigem Token hoch. Kein produktiver Server geände
 Nächster Schritt: öffentlichen HACS-Check des gepushten Standes bestätigen,
 ausdrückliche Freigabe der PR-Übernahme nach main erhalten, Release-Entwurf auf
 den endgültigen geprüften Commit setzen und veröffentlichen.
+
+## Freigabe und HACS-Korrektur am 2026-11-06
+
+Der Benutzer hat PR #1 nach main und Veröffentlichung v0.2.0 ausdrücklich
+freigegeben. PR #1 wurde übernommen, main steht auf Mergecommit 862260c.
+Tests und Hassfest auf main erfolgreich; öffentlicher HACS-Check meldet
+NOASSERTION-Lizenzerkennung und fehlende Topics. Der App-Zugang darf Topics
+nicht setzen (HTTP 403), Benutzer wurde gebeten, home-assistant und hacs über
+About einzutragen.
+
+Für maschinenlesbare MIT-Erkennung wurde der Hinweis auf die ausgenommenen
+Logo-Dateien aus LICENSE in die separate NOTICE.md verschoben. Die vollständige
+nichtkommerzielle Grafiklizenz in brand/LICENSE.upstream bleibt unverändert
+erhalten; keinerlei zusätzliche Grafikrechte erteilt. Dieser Metadatenfix wird
+als notwendige Korrektur für den freigegebenen HACS-Release nach main übernommen.
+Der bestehende Release-Entwurf bleibt bis zum erfolgreichen öffentlichen Check
+unveröffentlicht und muss auf den abschließenden Commit aktualisiert werden.

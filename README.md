@@ -142,7 +142,7 @@ Tests verwenden ausschließlich synthetische Daten und benötigen keine echten K
 ## Lizenz und Zuordnung
 
 Unabhängige Community-Integration, keine offizielle Home-Assistant- oder
-SparkyFitness-Veröffentlichung. Originaler Integrationscode: [MIT](LICENSE).
+SparkyFitness-Veröffentlichung. Originaler Integrationscode: [MIT](LICENSE), mit [separaten Grafikbedingungen](NOTICE.md).
 Das offizielle SparkyFitness-Logo wurde unverändert übernommen und unterliegt der
 [Upstream-Lizenz für nichtkommerzielle Nutzung](custom_components/sparkyfitness/brand/LICENSE.upstream),
 nicht der MIT-Lizenz. Kommerzielle Nutzung der Grafik erfordert die entsprechende
