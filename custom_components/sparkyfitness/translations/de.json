@@ -168,6 +168,44 @@
       "sodium_goal": {
         "name": "Natrium Tagesziel"
       }
+    },
+    "number": {
+      "weight": {
+        "name": "Gewicht eintragen (heute)"
+      },
+      "neck": {
+        "name": "Halsumfang eintragen (heute)"
+      },
+      "waist": {
+        "name": "Taillenumfang eintragen (heute)"
+      },
+      "hips": {
+        "name": "Hüftumfang eintragen (heute)"
+      },
+      "height": {
+        "name": "Körpergröße eintragen (heute)"
+      },
+      "body_fat_percentage": {
+        "name": "Körperfett eintragen (heute)"
+      },
+      "muscle_mass_kg": {
+        "name": "Muskelmasse eintragen (heute)"
+      },
+      "bone_mass_kg": {
+        "name": "Knochenmasse eintragen (heute)"
+      },
+      "body_water_percentage": {
+        "name": "Körperwasser eintragen (heute)"
+      },
+      "steps": {
+        "name": "Schritte heute eintragen (heute)"
+      },
+      "resting_heart_rate": {
+        "name": "Ruhepuls eintragen (heute)"
+      },
+      "bmr": {
+        "name": "Gemessener Grundumsatz heute eintragen (heute)"
+      }
     }
   },
   "services": {

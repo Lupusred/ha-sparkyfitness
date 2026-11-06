@@ -1,5 +1,12 @@
 # Änderungen
 
+## 0.3.0 — 2026-11-06
+
+- Zwölf direkt beschreibbare Zahlen-Entitäten für heutige Körpermessungen.
+- Dashboard-Eingabe mit bestehender Schreibfreigabe, Administratorprüfung und
+  bestätigtem erneuten Einlesen. Bestehende Sensoren und Aktionen bleiben erhalten.
+- Anleitung zur direkten Eingabe in docs/WRITING.md.
+
 ## 0.2.0 — 2026-11-05
 
 Erste öffentliche Veröffentlichung für die Installation als HACS Custom Repository.

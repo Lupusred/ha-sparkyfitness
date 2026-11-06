@@ -390,3 +390,44 @@ async def test_redirect_does_not_forward_key(aiohttp_server, socket_enabled):
         with pytest.raises(ApiError):
             await client.write("measurements/check-in", {"weight": 80}, "a")
     assert received == []
+
+
+async def test_number_write_uses_guarded_service(hass, loaded):
+    from homeassistant.helpers import entity_registry as er
+
+    registry = er.async_get(hass)
+    entity_id = registry.async_get_entity_id("number", DOMAIN, "account-a_write_weight")
+    assert entity_id
+    assert len([s for s in hass.states.async_all("number")]) == 12
+    client = loaded.runtime_data.client
+    with (
+        patch.object(client, "identity", return_value="a"),
+        patch.object(client, "write", return_value={"id": ID}) as write,
+    ):
+        await hass.services.async_call(
+            "number", "set_value", {"entity_id": entity_id, "value": 81.2}, blocking=True
+        )
+        write.assert_awaited_once_with(
+            "measurements/check-in",
+            {"entry_date": loaded.runtime_data.today(), "weight": 81.2},
+            "a",
+        )
+    # The fixture's refreshed server value wins; no optimistic 81.2 state.
+    assert float(hass.states.get(entity_id).state) == 80.2
+
+
+async def test_number_preserves_nonadmin_context(hass, loaded, hass_admin_user):
+    from homeassistant.helpers import entity_registry as er
+
+    user = await hass.auth.async_create_user("Synthetic user", group_ids=["system-users"])
+    entity_id = er.async_get(hass).async_get_entity_id("number", DOMAIN, "account-a_write_weight")
+    with patch.object(loaded.runtime_data.client, "write") as write:
+        with pytest.raises(Unauthorized):
+            await hass.services.async_call(
+                "number",
+                "set_value",
+                {"entity_id": entity_id, "value": 81},
+                blocking=True,
+                context=Context(user_id=user.id),
+            )
+        write.assert_not_called()

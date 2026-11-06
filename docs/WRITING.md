@@ -4,6 +4,28 @@ Ab Version 0.2.0 gibt es sechs Aktionen. Sensoren bleiben Anzeigeobjekte; ihre
 Zustände werden nicht automatisch zurückgeschrieben. Damit entstehen keine
 Rückkopplungen zwischen eingelesenen Tageswerten und Schreibaktionen.
 
+## Direkte Eingabe über Entitäten ab 0.3.0
+
+Nach dem Update Home Assistant neu starten und die Schreiboption wie unten
+aktivieren. Unter Einstellungen → Geräte & Dienste → SparkyFitness → Gerät
+stehen zwölf zusätzliche Zahlen-Entitäten mit „eintragen (heute)“ im Namen bereit.
+Diese können in eine Entitäten-Karte auf dem Dashboard aufgenommen werden.
+Das Zahlenfeld ändern und mit Enter bestätigen: Der Wert wird sofort für **heute**
+in der konfigurierten Zeitzone gespeichert. Jeder bestätigte Wert ist ein eigener
+Schreibvorgang. Nur dieses Feld wird ersetzt; andere Messwerte bleiben erhalten.
+
+Verfügbar: Gewicht, Hals, Taille, Hüfte, Größe, Körperfett, Muskel-/Knochenmasse,
+Körperwasser, Schritte, Ruhepuls und extern gemessener Grundumsatz.
+Ohne Schreibfreigabe sind die Eingabe-Entitäten nicht verfügbar. Interaktive
+Änderungen erfordern weiterhin einen Administrator. Anzeigen folgen der bestätigten
+Serverantwort beim erneuten Einlesen, ohne optimistische Wertänderung.
+
+Für frühere Tage und benutzerdefinierte Kategorien bleiben die unten beschriebenen
+Aktionen verfügbar. Wasser, Nahrung, Schlaf und Training benötigen mehrere
+zusammengehörige Eingaben und bleiben ebenfalls Aktionen; berechnete Tageswerte
+werden nicht als schreibbare Entitäten angeboten. Körperwerte können beim Öffnen
+einen älteren, fortgeschriebenen Messwert anzeigen; jede Eingabe speichert für heute.
+
 ## Einmalige Aktivierung pro Konto
 
 1. In SparkyFitness einen eigenen API-Schlüssel mit Schreibrechten erstellen.

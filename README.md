@@ -147,3 +147,6 @@ Das offizielle SparkyFitness-Logo wurde unverändert übernommen und unterliegt 
 [Upstream-Lizenz für nichtkommerzielle Nutzung](custom_components/sparkyfitness/brand/LICENSE.upstream),
 nicht der MIT-Lizenz. Kommerzielle Nutzung der Grafik erfordert die entsprechende
 Erlaubnis des Rechteinhabers. [Quellenangabe](custom_components/sparkyfitness/brand/NOTICE.md).
+
+Ab 0.3.0 stehen zwölf direkte Eingabe-Entitäten für heutige Körpermessungen bereit.
+[Einrichtung und Dashboard-Nutzung](docs/WRITING.md#direkte-eingabe-über-entitäten-ab-030).
