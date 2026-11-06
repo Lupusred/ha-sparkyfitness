@@ -1,0 +1,328 @@
+{
+  "title": "SparkyFitness",
+  "config": {
+    "step": {
+      "user": {
+        "title": "SparkyFitness",
+        "description": "Connect with a read-only API key.",
+        "data": {
+          "url": "Server URL",
+          "api_key": "API key"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Renew API key",
+        "data": {
+          "api_key": "API key"
+        }
+      },
+      "reconfigure": {
+        "title": "Replace API key",
+        "data": {
+          "api_key": "API key"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect or incompatible API response.",
+      "invalid_auth": "API key invalid, expired or permission denied.",
+      "invalid_url": "Enter an HTTP(S) server URL without credentials or query.",
+      "wrong_account": "The key belongs to a different account."
+    },
+    "abort": {
+      "already_configured": "This server account is already configured.",
+      "reauth_successful": "API key updated.",
+      "reconfigure_successful": "API key updated."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "update_interval": "Update interval (minutes)",
+          "time_zone": "Calendar time zone (e.g. Europe/Berlin)",
+          "enable_writes": "Enable write actions (requires a write-enabled key)"
+        }
+      }
+    },
+    "error": {
+      "invalid_timezone": "Unknown IANA time zone."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "weight": {
+        "name": "Weight"
+      },
+      "neck": {
+        "name": "Neck"
+      },
+      "waist": {
+        "name": "Waist"
+      },
+      "hips": {
+        "name": "Hips"
+      },
+      "height": {
+        "name": "Height"
+      },
+      "body_fat_percentage": {
+        "name": "Body fat"
+      },
+      "muscle_mass_kg": {
+        "name": "Muscle mass"
+      },
+      "bone_mass_kg": {
+        "name": "Bone mass"
+      },
+      "body_water_percentage": {
+        "name": "Body water"
+      },
+      "steps": {
+        "name": "Steps today"
+      },
+      "bmr": {
+        "name": "Measured basal calories today"
+      },
+      "resting_heart_rate": {
+        "name": "Resting heart rate"
+      },
+      "calories": {
+        "name": "Calories today"
+      },
+      "calories_goal": {
+        "name": "Calorie goal"
+      },
+      "calories_remaining": {
+        "name": "Remaining calories"
+      },
+      "calories_burned": {
+        "name": "Calorie balance expenditure"
+      },
+      "water": {
+        "name": "Water today"
+      },
+      "training_count": {
+        "name": "Training sessions today"
+      },
+      "training_duration": {
+        "name": "Training duration today"
+      },
+      "sleep_duration_in_seconds": {
+        "name": "Sleep record duration"
+      },
+      "sleep_time_asleep_in_seconds": {
+        "name": "Time asleep"
+      },
+      "sleep_sleep_score": {
+        "name": "Sleep score"
+      },
+      "sleep_deep_sleep_seconds": {
+        "name": "Deep sleep"
+      },
+      "sleep_rem_sleep_seconds": {
+        "name": "REM sleep"
+      },
+      "sleep_light_sleep_seconds": {
+        "name": "Light sleep"
+      },
+      "sleep_average_spo2_value": {
+        "name": "Sleep oxygen saturation"
+      },
+      "sleep_avg_overnight_hrv": {
+        "name": "Overnight HRV"
+      },
+      "protein": {
+        "name": "Protein today"
+      },
+      "protein_goal": {
+        "name": "Protein goal"
+      },
+      "carbs": {
+        "name": "Carbohydrates today"
+      },
+      "carbs_goal": {
+        "name": "Carbohydrates goal"
+      },
+      "fat": {
+        "name": "Fat today"
+      },
+      "fat_goal": {
+        "name": "Fat goal"
+      },
+      "dietary_fiber": {
+        "name": "Fiber today"
+      },
+      "dietary_fiber_goal": {
+        "name": "Fiber goal"
+      },
+      "sugars": {
+        "name": "Sugar today"
+      },
+      "sugars_goal": {
+        "name": "Sugar goal"
+      },
+      "sodium": {
+        "name": "Sodium today"
+      },
+      "sodium_goal": {
+        "name": "Sodium goal"
+      }
+    }
+  },
+  "services": {
+    "set_body_measurements": {
+      "name": "Set body measurements",
+      "description": "Update only the supplied fields for one date (kg, cm, %, steps, bpm, measured BMR in kcal). Existing supplied fields are replaced; other fields stay unchanged.",
+      "fields": {
+        "config_entry_id": {
+          "name": "SparkyFitness account"
+        },
+        "date": {
+          "name": "Date (default: today)"
+        },
+        "weight": {
+          "name": "Weight (kg)"
+        },
+        "neck": {
+          "name": "Neck (cm)"
+        },
+        "waist": {
+          "name": "Waist (cm)"
+        },
+        "hips": {
+          "name": "Hips (cm)"
+        },
+        "height": {
+          "name": "Height (cm)"
+        },
+        "body_fat_percentage": {
+          "name": "Body fat (%)"
+        },
+        "muscle_mass_kg": {
+          "name": "Muscle mass (kg)"
+        },
+        "bone_mass_kg": {
+          "name": "Bone mass (kg)"
+        },
+        "body_water_percentage": {
+          "name": "Body water (%)"
+        },
+        "steps": {
+          "name": "Steps"
+        },
+        "resting_heart_rate": {
+          "name": "Resting heart rate (bpm)"
+        },
+        "bmr": {
+          "name": "Measured BMR (kcal)"
+        }
+      }
+    },
+    "record_custom_measurement": {
+      "name": "Record custom measurement",
+      "description": "Use an existing category ID and its configured unit. Daily/hourly HA entries are updated; All/Unlimited adds a new entry.",
+      "fields": {
+        "config_entry_id": {
+          "name": "SparkyFitness account"
+        },
+        "date": {
+          "name": "Date (default: today)"
+        },
+        "category_id": {
+          "name": "Category UUID"
+        },
+        "value": {
+          "name": "Value in category unit"
+        },
+        "hour": {
+          "name": "Local hour (hourly category)"
+        }
+      }
+    },
+    "record_water": {
+      "name": "Record water intake",
+      "description": "Record a water sample in mL. Reuse record_id only to correct that same sample; use a new ID for each drink.",
+      "fields": {
+        "config_entry_id": {
+          "name": "SparkyFitness account"
+        },
+        "date": {
+          "name": "Date (default: today)"
+        },
+        "amount_ml": {
+          "name": "Water (mL)"
+        },
+        "record_id": {
+          "name": "Stable sample ID"
+        }
+      }
+    },
+    "record_sleep": {
+      "name": "Record sleep",
+      "description": "Record bedtime and wake time with UTC offsets. No invented sleep stages or score. Check SparkyFitness before resubmitting.",
+      "fields": {
+        "config_entry_id": {
+          "name": "SparkyFitness account"
+        },
+        "date": {
+          "name": "Date (default: today)"
+        },
+        "bedtime": {
+          "name": "Bedtime (ISO, with UTC offset)"
+        },
+        "wake_time": {
+          "name": "Wake time (ISO, with UTC offset)"
+        }
+      }
+    },
+    "log_food": {
+      "name": "Log food",
+      "description": "Add a consumed amount of an existing food variant, using its serving unit. Repeating creates another diary entry.",
+      "fields": {
+        "config_entry_id": {
+          "name": "SparkyFitness account"
+        },
+        "date": {
+          "name": "Date (default: today)"
+        },
+        "food_id": {
+          "name": "Food UUID"
+        },
+        "variant_id": {
+          "name": "Variant UUID"
+        },
+        "quantity": {
+          "name": "Quantity"
+        },
+        "unit": {
+          "name": "Serving unit"
+        },
+        "meal_type": {
+          "name": "Meal type"
+        }
+      }
+    },
+    "log_exercise": {
+      "name": "Log exercise",
+      "description": "Add an existing exercise with duration and observed calorie expenditure. Repeating creates another entry.",
+      "fields": {
+        "config_entry_id": {
+          "name": "SparkyFitness account"
+        },
+        "date": {
+          "name": "Date (default: today)"
+        },
+        "exercise_id": {
+          "name": "Exercise UUID"
+        },
+        "duration_minutes": {
+          "name": "Duration (minutes)"
+        },
+        "calories_burned": {
+          "name": "Recorded calories (kcal)"
+        }
+      }
+    }
+  }
+}

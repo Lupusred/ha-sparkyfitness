@@ -1,0 +1,285 @@
+set_body_measurements:
+  name: Set body measurements
+  description: Update only the supplied fields for one date (kg, cm, %, steps, bpm,
+    measured BMR in kcal). Existing supplied fields are replaced; other fields stay
+    unchanged.
+  fields:
+    config_entry_id:
+      name: SparkyFitness account
+      required: true
+      selector: &id001
+        config_entry:
+          integration: sparkyfitness
+    date:
+      name: 'Date (default: today)'
+      required: false
+      selector: &id002
+        date: {}
+    weight:
+      name: Weight (kg)
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 1000000
+          step: 0.01
+          mode: box
+    neck:
+      name: Neck (cm)
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 1000000
+          step: 0.01
+          mode: box
+    waist:
+      name: Waist (cm)
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 1000000
+          step: 0.01
+          mode: box
+    hips:
+      name: Hips (cm)
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 1000000
+          step: 0.01
+          mode: box
+    height:
+      name: Height (cm)
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 1000000
+          step: 0.01
+          mode: box
+    body_fat_percentage:
+      name: Body fat (%)
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 1000000
+          step: 0.01
+          mode: box
+    muscle_mass_kg:
+      name: Muscle mass (kg)
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 1000000
+          step: 0.01
+          mode: box
+    bone_mass_kg:
+      name: Bone mass (kg)
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 1000000
+          step: 0.01
+          mode: box
+    body_water_percentage:
+      name: Body water (%)
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 1000000
+          step: 0.01
+          mode: box
+    steps:
+      name: Steps
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 1000000
+          step: 0.01
+          mode: box
+    resting_heart_rate:
+      name: Resting heart rate (bpm)
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 1000000
+          step: 0.01
+          mode: box
+    bmr:
+      name: Measured BMR (kcal)
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 1000000
+          step: 0.01
+          mode: box
+record_custom_measurement:
+  name: Record custom measurement
+  description: Use an existing category ID and its configured unit. Daily/hourly HA
+    entries are updated; All/Unlimited adds a new entry.
+  fields:
+    config_entry_id:
+      name: SparkyFitness account
+      required: true
+      selector: *id001
+    date:
+      name: 'Date (default: today)'
+      required: false
+      selector: *id002
+    category_id:
+      name: Category UUID
+      required: true
+      selector:
+        text: {}
+    value:
+      name: Value in category unit
+      required: true
+      selector:
+        text: {}
+    hour:
+      name: Local hour (hourly category)
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 23
+          step: 1
+          mode: box
+record_water:
+  name: Record water intake
+  description: Record a water sample in mL. Reuse record_id only to correct that same
+    sample; use a new ID for each drink.
+  fields:
+    config_entry_id:
+      name: SparkyFitness account
+      required: true
+      selector: *id001
+    date:
+      name: 'Date (default: today)'
+      required: false
+      selector: *id002
+    amount_ml:
+      name: Water (mL)
+      required: true
+      selector:
+        number:
+          min: 1
+          max: 20000
+          step: 1
+          mode: box
+    record_id:
+      name: Stable sample ID
+      required: true
+      selector:
+        text: {}
+record_sleep:
+  name: Record sleep
+  description: Record bedtime and wake time with UTC offsets. No invented sleep stages
+    or score. Check SparkyFitness before resubmitting.
+  fields:
+    config_entry_id:
+      name: SparkyFitness account
+      required: true
+      selector: *id001
+    date:
+      name: 'Date (default: today)'
+      required: false
+      selector: *id002
+    bedtime:
+      name: Bedtime (ISO, with UTC offset)
+      required: true
+      selector:
+        text: {}
+    wake_time:
+      name: Wake time (ISO, with UTC offset)
+      required: true
+      selector:
+        text: {}
+log_food:
+  name: Log food
+  description: Add a consumed amount of an existing food variant, using its serving
+    unit. Repeating creates another diary entry.
+  fields:
+    config_entry_id:
+      name: SparkyFitness account
+      required: true
+      selector: *id001
+    date:
+      name: 'Date (default: today)'
+      required: false
+      selector: *id002
+    food_id:
+      name: Food UUID
+      required: true
+      selector:
+        text: {}
+    variant_id:
+      name: Variant UUID
+      required: true
+      selector:
+        text: {}
+    quantity:
+      name: Quantity
+      required: true
+      selector:
+        number:
+          min: 0.001
+          max: 100000
+          step: 0.001
+          mode: box
+    unit:
+      name: Serving unit
+      required: true
+      selector:
+        text: {}
+    meal_type:
+      name: Meal type
+      required: true
+      selector:
+        text: {}
+log_exercise:
+  name: Log exercise
+  description: Add an existing exercise with duration and observed calorie expenditure.
+    Repeating creates another entry.
+  fields:
+    config_entry_id:
+      name: SparkyFitness account
+      required: true
+      selector: *id001
+    date:
+      name: 'Date (default: today)'
+      required: false
+      selector: *id002
+    exercise_id:
+      name: Exercise UUID
+      required: true
+      selector:
+        text: {}
+    duration_minutes:
+      name: Duration (minutes)
+      required: true
+      selector:
+        number:
+          min: 0.01
+          max: 1440
+          step: 0.01
+          mode: box
+    calories_burned:
+      name: Recorded calories (kcal)
+      required: true
+      selector:
+        number:
+          min: 0
+          max: 30000
+          step: 1
+          mode: box
