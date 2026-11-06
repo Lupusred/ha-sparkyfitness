@@ -21,6 +21,9 @@ def test_package_contains_only_installation_files(tmp_path):
         names = archive.namelist()
         assert "sparkyfitness/manifest.json" in names
         assert "sparkyfitness/services.yaml" in names
+        assert archive.read("sparkyfitness/LICENSE.md") == (ROOT / "LICENSE").read_bytes()
+        assert "sparkyfitness/NOTICE.md" in names
+        assert "sparkyfitness/brand/NOTICE.md" in names
         assert "sparkyfitness/brand/LICENSE.upstream" in names
         assert not any("__pycache__" in n or n.endswith(".pyc") or "/tests/" in n for n in names)
         assert archive.testzip() is None

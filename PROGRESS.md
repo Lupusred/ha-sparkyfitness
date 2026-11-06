@@ -1,6 +1,6 @@
 # Entwicklungsstand
 
-Stand: 2026-11-05. Arbeitsbranch: `develop/sparkyfitness`.
+Stand: 2026-11-06. Arbeitsbranch: `develop/sparkyfitness`.
 
 Aktueller Auftrag: öffentliche Freigabe, geprüfte Übernahme nach `main` und erster
 HACS-Release ausdrücklich vom Benutzer autorisiert. Ältere Abschnitte über ein
@@ -259,3 +259,21 @@ erhalten; keinerlei zusätzliche Grafikrechte erteilt. Dieser Metadatenfix wird
 als notwendige Korrektur für den freigegebenen HACS-Release nach main übernommen.
 Der bestehende Release-Entwurf bleibt bis zum erfolgreichen öffentlichen Check
 unveröffentlicht und muss auf den abschließenden Commit aktualisiert werden.
+
+## Erfolgreiche öffentliche Validierung und Paketabschluss
+
+Topics vom Benutzer gesetzt; GitHub erkennt LICENSE als MIT.
+[Validate 42178478537, Versuch 2](https://github.com/Lupusred/ha-sparkyfitness/actions/runs/42178478537)
+ist für 68310ef vollständig erfolgreich: Tests, Hassfest und erstmals öffentlicher
+HACS-Check. Release-Entwurf auf Tag v0.2.0 korrigiert; Release Notes mit echten
+Zeilenumbrüchen formatiert.
+
+Die abschließende Paketkontrolle zeigte: Die Grafiklizenz war enthalten, die
+MIT-Code-Lizenz lag bisher nur im Repository-Stamm. LICENSE.md und ein kurzer
+Geltungsbereichshinweis liegen jetzt zusätzlich im Integrationsordner, sodass
+HACS-Downloads und manuelles ZIP beide Lizenztexte enthalten. Pakettest prüft
+exakte Übereinstimmung mit der Root-Lizenz und Anwesenheit sämtlicher Hinweise.
+Vor Veröffentlichung den finalen Commit prüfen und Release-Entwurf darauf setzen.
+
+Prüfung dieses Paketabschlusses: drei Pakettests, Ruff-Lint/-Format und
+`git diff --check` bestanden; Integrationslogik unverändert.
