@@ -2,7 +2,7 @@
 
 Stand: 2026-11-06. Arbeitsbranch: `develop/sparkyfitness`.
 
-Aktueller Stand: **v0.2.0 öffentlich veröffentlicht**, PR #1 übernommen,
+Aktueller Stand: **v0.3.0 öffentlich veröffentlicht**, PR #1 übernommen,
 HACS als benutzerdefiniertes Repository nutzbar. Release-Commit:
 `3f0a1a021d7c64f39295b05800c133eff060ca67`.
 [Release und Installationspaket](https://github.com/Lupusred/ha-sparkyfitness/releases/tag/v0.2.0).
@@ -319,3 +319,22 @@ Manifest 0.3.0, Changelog und Eingabeanleitung aktualisiert. Entwicklungsbranch
 wird gepusht, PR zur Prüfung vorbereitet. Die frühere ausdrückliche Main-/Release-
 Freigabe bezog sich auf v0.2.0; Übernahme/Veröffentlichung 0.3.0 separat bestätigen.
 Nächster Schritt: GitHub-Checks prüfen, dann PR übernehmen und v0.3.0 veröffentlichen.
+
+## Veröffentlichung 0.3.0 abgeschlossen
+
+PR #8 mit ausdrücklicher Benutzerfreigabe übernommen, Release v0.3.0 veröffentlicht.
+Release-Commit 207a82741dda832596c2debfd6ba1b0306298a4a ist im Dateibaum identisch
+zum geprüften PR. 82 Tests, Ruff, Bandit, HACS und Hassfest erfolgreich
+(GitHub-Lauf 42180891758). Release-Workflow 42182401872 erfolgreich.
+Release ID 436224105, öffentlich und als neuester Release bestätigt.
+Download sparkyfitness.zip bytegleich zum lokalen Paketbau: 215756 Bytes,
+SHA-256 4f5a1a18e5ca83b6c875dffe68c9096e65feb1d2ddd9deb7574fee220b22fdbc.
+ZIP-Integrität, Manifestversion 0.3.0 und enthaltene Number-Plattform bestätigt.
+Keine produktiven Änderungen. Nächster Schritt: Benutzer aktualisiert über HACS,
+startet HA neu und fügt die gewünschten Eingabe-Entitäten zur Dashboardkarte hinzu.
+Live-Schreibtest weiterhin offen.
+
+Automatische Freigabe hat einen zusätzlichen direkten Main-Push dieses
+Dokumentationsnachtrags abgelehnt: Freigabe galt PR #8 und Release, nicht einem
+separaten Main-Push. Nachtrag daher ausschließlich im Entwicklungsbranch.
+Keine Umgehung; Release bleibt unverändert veröffentlicht.
