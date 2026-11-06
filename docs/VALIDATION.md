@@ -10,12 +10,32 @@ uncertain writes, response confirmation, successful-save/failed-refresh distinct
 key reconfiguration, official logo hashes and deterministic install ZIP contents.
 All requests use synthetic data. No live writes or production modifications.
 
-The prior GitHub run for 2901d4b passed tests and Hassfest. HACS validation failed
-because the official action does not validate private repositories. This is now
-an explicit conditional skip until the repository is public, not a claimed pass.
-GitHub run 42118750136 on ec7e866 also passed the complete tests/lint/security/
-packaging job and Hassfest, and uploaded the installation artifact. HACS was
-explicitly skipped because the repository remains private. See PROGRESS.md.
+## Public validation — 2026-11-06
+
+Repository visibility is public. PR #1 has been merged with explicit owner
+approval. GitHub recognizes the MIT code license; separate notices retain the
+non-commercial upstream artwork terms.
+
+[Validate 42179011923](https://github.com/Lupusred/ha-sparkyfitness/actions/runs/42179011923)
+passed all tests, Ruff, Bandit, packaging, Hassfest and the public HACS validator
+on release commit `3f0a1a021d7c64f39295b05800c133eff060ca67`.
+The isolated three distribution tests also pass after adding the MIT code license
+and artwork-scope notice to the installed integration folder.
+
+[Release v0.2.0](https://github.com/Lupusred/ha-sparkyfitness/releases/tag/v0.2.0)
+is public. [Release workflow 42179203911](https://github.com/Lupusred/ha-sparkyfitness/actions/runs/42179203911)
+successfully built and uploaded sparkyfitness.zip from the tag. Its public download
+was verified byte-for-byte against the local package: 214426 bytes, 19 files,
+SHA-256 `84789ff4d1cf7491eec2f1890d16734abb86a1761b77913dca8d0d8f3f20f66a`.
+ZIP integrity, manifest version and the tag's commit were checked.
+
+Remaining checks: installation through HACS in the user's own deployment and
+live opt-in writes. The earlier manual installation/read operation was confirmed
+by the user. No production systems were changed during publication. This release
+is available as a HACS custom repository; no default-catalogue submission was made.
+
+The following sections record earlier validation states, not current release
+availability. Current delivery status is recorded in PROGRESS.md.
 
 ## Historical 0.1.0 baseline
 
@@ -69,7 +89,7 @@ See PROGRESS.md and the GitHub development branch for subsequent delivery status
 The cloud environment draft now contains reproducible install/start instructions;
 publishing that environment remains a separate user action.
 
-## Public-release preparation
+## Historical public-release preparation
 
 All eight commits through b8103af were scanned with checksum-verified Gitleaks
 8.24.3: no leaks found. The 80 tests, Ruff and Bandit passed again; 39 internal

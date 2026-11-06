@@ -2,9 +2,13 @@
 
 Stand: 2026-11-06. Arbeitsbranch: `develop/sparkyfitness`.
 
-Aktueller Auftrag: öffentliche Freigabe, geprüfte Übernahme nach `main` und erster
-HACS-Release ausdrücklich vom Benutzer autorisiert. Ältere Abschnitte über ein
-privates Repository dokumentieren den damaligen Zustand.
+Aktueller Stand: **v0.2.0 öffentlich veröffentlicht**, PR #1 übernommen,
+HACS als benutzerdefiniertes Repository nutzbar. Release-Commit:
+`3f0a1a021d7c64f39295b05800c133eff060ca67`.
+[Release und Installationspaket](https://github.com/Lupusred/ha-sparkyfitness/releases/tag/v0.2.0).
+Tests, Hassfest und öffentlicher HACS-Check erfolgreich; öffentlicher ZIP-Download
+gegen den lokalen Paketbau geprüft. Ältere Abschnitte sind Entwicklungshistorie.
+Keine Änderungen am produktiven Home-Assistant-Server.
 
 ## Ziel und Arbeitsweise
 
@@ -51,9 +55,9 @@ pytest-homeassistant-custom-component 0.13.316.
 - Ein lokaler aiohttp-Testserver prüft echte HTTP-Anfragen mit synthetischen Daten.
 - HA-Tests prüfen unter anderem zwei Konten, Entity-Registrierung, dynamische
   Kategorien, Wiederverbindung, Schlüsselwechsel, Polling und Tageswechsel.
-- Bisheriger GitHub-Lauf: Tests und Hassfest erfolgreich. HACS verweigert
-  private Repositories; jetzt ausdrücklich bedingter Skip. Abschließender
-  Implementierungslauf ec7e866: Tests, Ruff, Bandit, Paketbau und Hassfest erfolgreich.
+- Öffentlicher GitHub-Lauf 42178478537 (Versuch 2): Tests, Ruff, Bandit,
+  Paketbau, Hassfest und HACS erfolgreich. Frühere private Läufe sind unten
+  ausschließlich als Entwicklungshistorie dokumentiert.
 
 Die Sandbox ließ die asynchrone HA-Testinitialisierung hängen. Über den unterstützten
 Freigabeweg ausgeführte Tests funktionieren. Keine Assertions wurden deaktiviert.
@@ -90,16 +94,16 @@ noch zu bestätigen. Keine API-Schlüssel oder persönlichen Messwerte benötigt
 
 ## Nächste Schritte
 
-1. GitHub-Actions des erweiterten Entwicklungsbranches prüfen; tatsächliche Fehler beheben,
-   passende lokale Prüfungen ausführen und separat committen/pushen.
-2. Exakte HA-/SparkyFitness-Versionen und Profilzeitzone für den Live-Test klären.
-3. Benutzer führt den begrenzten Installationstest gemäß
-   [UNRAID.md](docs/UNRAID.md) selbst aus; nur Erfolg/Fehlerklassen und gegebenenfalls
-   redigierte Antwortstrukturen rückmelden lassen.
+1. Benutzer übernimmt die veröffentlichte Integration gemäß
+   [INSTALLATION.md](docs/INSTALLATION.md) in HACS; vorhandenen HA-Eintrag erhalten.
+2. Exakte HA-/SparkyFitness-Versionen und Profilzeitzone beim Live-Test festhalten.
+3. Benutzer testet gezielt eine optionale Schreibaktion gemäß
+   [WRITING.md](docs/WRITING.md); nur Erfolg/Fehlerklasse ohne persönliche Messwerte
+   oder Zugangsdaten rückmelden.
 4. Beobachtete Kompatibilitätsprobleme zunächst mit synthetischen Regressionstests
    reproduzieren, anschließend in kleinen Schritten beheben.
-5. Erst nach diesen Prüfungen eine Übernahme nach `main` bzw. einen Release
-   vorbereiten. Kein automatischer Eingriff in die produktive Installation.
+5. Weiterentwicklung auf develop/sparkyfitness; spätere Releases bewusst freigeben.
+   Kein automatischer Eingriff in die produktive Installation.
 
 ## Fortsetzung ohne erneute Grundrecherche
 
@@ -187,7 +191,7 @@ verifiziert) hat sämtliche sieben bisherigen lokalen Commits geprüft: keine
 Secrets gefunden. 80 Tests, Ruff, Formatierung und Bandit bestanden; 39 lokale
 Dokumentationslinks überprüft.
 
-## Veröffentlichungsstatus: externe Freigaben ausstehend
+## Historischer Veröffentlichungsstatus: damalige externe Blockaden
 
 Die öffentliche Dokumentation ist in Commit b8103af auf develop/sparkyfitness.
 [PR #1](https://github.com/Lupusred/ha-sparkyfitness/pull/1) übernimmt den
@@ -277,3 +281,25 @@ Vor Veröffentlichung den finalen Commit prüfen und Release-Entwurf darauf setz
 
 Prüfung dieses Paketabschlusses: drei Pakettests, Ruff-Lint/-Format und
 `git diff --check` bestanden; Integrationslogik unverändert.
+
+## Veröffentlichung v0.2.0 abgeschlossen — 2026-11-06
+
+- Freigabe des Benutzers für PR #1 nach main und Release v0.2.0 umgesetzt.
+- Release-Tag v0.2.0 verweist auf 3f0a1a021d7c64f39295b05800c133eff060ca67.
+- [Validate 42179011923](https://github.com/Lupusred/ha-sparkyfitness/actions/runs/42179011923):
+  Tests, Ruff, Formatierung, Bandit, Paketbau, Hassfest und HACS erfolgreich.
+- [Release package 42179203911](https://github.com/Lupusred/ha-sparkyfitness/actions/runs/42179203911):
+  automatischer ZIP-Bau und Upload erfolgreich.
+- Release ID 435813141 öffentlich, kein Entwurf/Prerelease; als neuester Release
+  von GitHub bestätigt. Anhang sparkyfitness.zip: 214426 Bytes, 19 Dateien.
+- Öffentlicher Download bytegleich zum lokalen reproduzierbaren Paket;
+  ZIP-Integrität, Manifestversion und Tag-Commit geprüft.
+- SHA-256: `84789ff4d1cf7491eec2f1890d16734abb86a1761b77913dca8d0d8f3f20f66a`.
+- Metadatenblockaden erledigt: Repository öffentlich, Topics vom Benutzer gesetzt,
+  MIT erkannt. Keine Zugangsdaten veröffentlicht oder Produktionsdienste verändert.
+
+Dieser abschließende Dokumentationscommit folgt auf den unveränderten Release-Tag.
+Offen bleiben der HACS-Installationstest beim Benutzer und ein bewusst gewählter
+Live-Test der optionalen Schreibaktionen. Die manuelle Installation und der
+Lesebetrieb der vorherigen Basis wurden bereits bestätigt. Keine offenen
+Veröffentlichungsblockaden; kein Eintrag im HACS-Standardkatalog beantragt.
