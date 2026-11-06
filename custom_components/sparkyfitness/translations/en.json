@@ -168,6 +168,44 @@
       "sodium_goal": {
         "name": "Sodium goal"
       }
+    },
+    "number": {
+      "weight": {
+        "name": "Weight entry (today)"
+      },
+      "neck": {
+        "name": "Neck entry (today)"
+      },
+      "waist": {
+        "name": "Waist entry (today)"
+      },
+      "hips": {
+        "name": "Hips entry (today)"
+      },
+      "height": {
+        "name": "Height entry (today)"
+      },
+      "body_fat_percentage": {
+        "name": "Body fat entry (today)"
+      },
+      "muscle_mass_kg": {
+        "name": "Muscle mass entry (today)"
+      },
+      "bone_mass_kg": {
+        "name": "Bone mass entry (today)"
+      },
+      "body_water_percentage": {
+        "name": "Body water entry (today)"
+      },
+      "steps": {
+        "name": "Steps today entry (today)"
+      },
+      "resting_heart_rate": {
+        "name": "Resting heart rate entry (today)"
+      },
+      "bmr": {
+        "name": "Measured basal calories today entry (today)"
+      }
     }
   },
   "services": {

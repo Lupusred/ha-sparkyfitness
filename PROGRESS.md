@@ -303,3 +303,19 @@ Offen bleiben der HACS-Installationstest beim Benutzer und ein bewusst gewählte
 Live-Test der optionalen Schreibaktionen. Die manuelle Installation und der
 Lesebetrieb der vorherigen Basis wurden bereits bestätigt. Keine offenen
 Veröffentlichungsblockaden; kein Eintrag im HACS-Standardkatalog beantragt.
+
+## Version 0.3.0: direkte Eingabe-Entitäten
+
+Zwölf Number-Entitäten ergänzen die Sensoren für direkte heutige Körpermessungen.
+Schreibweg nutzt die bestehenden Admin-Aktionen mit ursprünglichem Benutzerkontext,
+Kontoprüfung, Schreibsperre und Identitätsprüfung. Keine optimistischen Zustände,
+keine POST-Wiederholung. Ohne Opt-in nicht verfügbar; neue Eingaben immer heute.
+Benutzerdefinierte Kategorien und zusammengesetzte Tagebucheinträge bleiben Aktionen.
+
+82 Tests bestanden, Ruff und Bandit ohne Befund. Neue HA-Integrationstests prüfen
+Registrierung, exakten Einzelfeld-POST, Rücklesen statt optimistischem Zustand und
+Abweisung eines normalen Nicht-Admin-Benutzers. Keine Produktivzugriffe.
+Manifest 0.3.0, Changelog und Eingabeanleitung aktualisiert. Entwicklungsbranch
+wird gepusht, PR zur Prüfung vorbereitet. Die frühere ausdrückliche Main-/Release-
+Freigabe bezog sich auf v0.2.0; Übernahme/Veröffentlichung 0.3.0 separat bestätigen.
+Nächster Schritt: GitHub-Checks prüfen, dann PR übernehmen und v0.3.0 veröffentlichen.

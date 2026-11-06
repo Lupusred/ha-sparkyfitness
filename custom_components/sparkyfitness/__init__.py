@@ -8,7 +8,7 @@ from .api import SparkyClient
 from .coordinator import SparkyCoordinator
 from .services import async_register_services
 
-PLATFORMS = [Platform.SENSOR]
+PLATFORMS = [Platform.SENSOR, Platform.NUMBER]
 
 
 async def async_setup_entry(hass, entry):
