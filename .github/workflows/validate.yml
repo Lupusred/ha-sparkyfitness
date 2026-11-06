@@ -21,7 +21,7 @@ jobs:
       - run: bandit -r custom_components -q
       - name: Package integration
         run: python scripts/package.py
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: sparkyfitness-installation
           path: dist/sparkyfitness.zip
