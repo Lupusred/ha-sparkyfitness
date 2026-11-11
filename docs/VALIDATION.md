@@ -96,3 +96,11 @@ All eight commits through b8103af were scanned with checksum-verified Gitleaks
 documentation links were checked. Public HACS validation is still pending because
 GitHub denied changing visibility through the connected integration. PR #1 and
 release draft 435813141 are prepared; publication is not claimed.
+
+## Dependency maintenance — 2026-11-11
+
+Combined dependency updates: 82 tests passed on Python 3.13 / HA 2026.2.3 and
+82 on Python 3.14.8 / HA 2026.10.4. Requirements use Python version markers to
+retain the original supported baseline. CI now runs both versions, with separate
+artifact names. Ruff 0.17.3 lint/format and Bandit 1.9.4 passed.
+No integration runtime changes or production access.

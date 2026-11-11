@@ -338,3 +338,46 @@ Automatische Freigabe hat einen zusätzlichen direkten Main-Push dieses
 Dokumentationsnachtrags abgelehnt: Freigabe galt PR #8 und Release, nicht einem
 separaten Main-Push. Nachtrag daher ausschließlich im Entwicklungsbranch.
 Keine Umgehung; Release bleibt unverändert veröffentlicht.
+
+## PR-Prüfung am 2026-11-11
+
+Neue Cloud-Umgebung erreichbar. Sechs offene Dependabot-PRs (#2–#7) anhand ihrer
+Diffs, CI-Ergebnisse und Fehlerprotokolle geprüft. Bericht:
+[PR-Prüfung](docs/reviews/2026-11-11-pull-requests.md).
+PR #5 blockiert durch Python >=3.14 bei weiterhin 3.13 in CI. Die anderen fünf
+Updates bestehen ihre Tests; veraltete HACS-Fehler erneut prüfen lassen.
+Auf Benutzeranweisung nichts veröffentlicht oder gemergt. Bericht lokal speichern;
+keine Veröffentlichung des Umgebungsentwurfs, keine produktiven Änderungen.
+Alle vier HACS-Nachprüfungen erfolgreich. PR #2, #3, #4, #6 und #7 damit grün.
+PR #5 bleibt begründet zurückgestellt; kombinierte Updates noch nicht getestet.
+Dokumentationsprüfung `git diff --check` bestanden; keine Anwendungscodeänderungen.
+
+## Alle Wartungs-PRs bearbeitet — 2026-11-11
+
+Benutzer hat die Übernahme aller sechs PRs in develop und die Lösung von #5
+beauftragt. #2/#3 über GitHub übernommen; Konflikte von #4/#7 lokal gelöst und
+#6 integriert. #5 mit Python-abhängigen Pins integriert: Python 3.13 behält
+pytest-homeassistant-custom-component 0.13.316 / HA 2026.2.3, Python 3.14 nutzt
+0.13.375 / HA 2026.10.4. CI-Matrix prüft beide, Artefaktnamen enthalten die
+Python-Version, damit parallele Uploads nicht kollidieren.
+
+Kombinierter Stand lokal geprüft: jeweils 82 Tests bestanden unter Python 3.13
+und 3.14.8. Ruff 0.17.3 Lint/Format und Bandit 1.9.4 ohne Befund. Keine Assertions
+entfernt und keine Anwendungscodeänderungen erforderlich. GitHub-Matrix nach Push
+prüfen. Kein main-Push, kein neuer Release, keine produktiven Änderungen.
+
+Abschluss bestätigt: PR #2–#7 sämtlich übernommen. Dependabot hatte #4 während
+der Arbeit aktualisiert; dessen abschließender Merge 3b3af06 ist im Dateibaum
+identisch mit dem lokal geprüften Integrationscommit 8cccf7e.
+[GitHub-Lauf 43002179050](https://github.com/Lupusred/ha-sparkyfitness/actions/runs/43002179050)
+vollständig erfolgreich: tests (3.13), tests (3.14), HACS und Hassfest.
+Beide Matrixjobs enthalten Lint, Format, Bandit, Paketbau und getrennte Uploads.
+Alle Änderungen auf develop/sparkyfitness; keine Übernahme nach main oder Release.
+
+## Übernahme der Wartungsupdates nach main
+
+Benutzer hat am 2026-11-11 ausdrücklich beauftragt, den geprüften Entwicklungsstand
+per Pull Request nach main zu übernehmen. Diff zu main geprüft: ausschließlich
+Entwicklungsabhängigkeiten, Workflows und Dokumentation; Integrationscode und
+Manifestversion bleiben unverändert. Vor Merge die PR-Checks abwarten.
+Kein neuer Tag/Release, keine Änderung an produktiven Installationen.

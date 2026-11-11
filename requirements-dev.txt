@@ -1,3 +1,4 @@
-pytest-homeassistant-custom-component==0.13.316
-ruff==0.15.0
-bandit==1.8.6
+pytest-homeassistant-custom-component==0.13.316; python_version < "3.14"
+pytest-homeassistant-custom-component==0.13.375; python_version >= "3.14"
+ruff==0.17.3
+bandit==1.9.4
