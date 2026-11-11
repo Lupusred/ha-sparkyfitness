@@ -35,3 +35,11 @@ Abschluss: Alle vier erneut gestarteten Läufe sind erfolgreich abgeschlossen.
 Damit haben PR #2, #3, #4, #6 und #7 erfolgreiche Tests, Hassfest und HACS.
 Die unveränderten Testjobs stammen aus den ursprünglichen Läufen; erneut ausgeführt
 wurden nur die zuvor fehlgeschlagenen HACS-Jobs. Kombinierte Updates noch nicht getestet.
+
+## Umsetzung nach Benutzerfreigabe
+
+Alle sechs Updates integriert. Überlappende Workflow-/Requirements-Konflikte
+unter Beibehaltung aller Updates aufgelöst. #5 ist durch Python-Versionsmarker
+und eine CI-Matrix gelöst: alte HA-Testbasis unter 3.13, neue unter 3.14.
+Jeweils 82 Tests auf dem kombinierten Stand bestanden; Ruff/Bandit erfolgreich.
+Die frühere Empfehlung zum Zurückstellen von #5 ist damit erledigt.

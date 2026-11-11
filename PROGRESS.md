@@ -351,3 +351,17 @@ keine Veröffentlichung des Umgebungsentwurfs, keine produktiven Änderungen.
 Alle vier HACS-Nachprüfungen erfolgreich. PR #2, #3, #4, #6 und #7 damit grün.
 PR #5 bleibt begründet zurückgestellt; kombinierte Updates noch nicht getestet.
 Dokumentationsprüfung `git diff --check` bestanden; keine Anwendungscodeänderungen.
+
+## Alle Wartungs-PRs bearbeitet — 2026-11-11
+
+Benutzer hat die Übernahme aller sechs PRs in develop und die Lösung von #5
+beauftragt. #2/#3 über GitHub übernommen; Konflikte von #4/#7 lokal gelöst und
+#6 integriert. #5 mit Python-abhängigen Pins integriert: Python 3.13 behält
+pytest-homeassistant-custom-component 0.13.316 / HA 2026.2.3, Python 3.14 nutzt
+0.13.375 / HA 2026.10.4. CI-Matrix prüft beide, Artefaktnamen enthalten die
+Python-Version, damit parallele Uploads nicht kollidieren.
+
+Kombinierter Stand lokal geprüft: jeweils 82 Tests bestanden unter Python 3.13
+und 3.14.8. Ruff 0.17.3 Lint/Format und Bandit 1.9.4 ohne Befund. Keine Assertions
+entfernt und keine Anwendungscodeänderungen erforderlich. GitHub-Matrix nach Push
+prüfen. Kein main-Push, kein neuer Release, keine produktiven Änderungen.

@@ -7,12 +7,16 @@ permissions:
   contents: read
 jobs:
   tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.13", "3.14"]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
         with:
-          python-version: '3.13'
+          python-version: ${{ matrix.python }}
           cache: pip
       - run: pip install -r requirements-dev.txt
       - run: python -m pytest -q --cov=custom_components.sparkyfitness --cov-report=term-missing
@@ -23,7 +27,7 @@ jobs:
         run: python scripts/package.py
       - uses: actions/upload-artifact@v7
         with:
-          name: sparkyfitness-installation
+          name: sparkyfitness-installation-${{ matrix.python }}
           path: dist/sparkyfitness.zip
           retention-days: 30
   hacs:
