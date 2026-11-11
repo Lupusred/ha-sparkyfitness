@@ -373,3 +373,11 @@ identisch mit dem lokal geprüften Integrationscommit 8cccf7e.
 vollständig erfolgreich: tests (3.13), tests (3.14), HACS und Hassfest.
 Beide Matrixjobs enthalten Lint, Format, Bandit, Paketbau und getrennte Uploads.
 Alle Änderungen auf develop/sparkyfitness; keine Übernahme nach main oder Release.
+
+## Übernahme der Wartungsupdates nach main
+
+Benutzer hat am 2026-11-11 ausdrücklich beauftragt, den geprüften Entwicklungsstand
+per Pull Request nach main zu übernehmen. Diff zu main geprüft: ausschließlich
+Entwicklungsabhängigkeiten, Workflows und Dokumentation; Integrationscode und
+Manifestversion bleiben unverändert. Vor Merge die PR-Checks abwarten.
+Kein neuer Tag/Release, keine Änderung an produktiven Installationen.
