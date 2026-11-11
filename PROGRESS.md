@@ -338,3 +338,16 @@ Automatische Freigabe hat einen zusätzlichen direkten Main-Push dieses
 Dokumentationsnachtrags abgelehnt: Freigabe galt PR #8 und Release, nicht einem
 separaten Main-Push. Nachtrag daher ausschließlich im Entwicklungsbranch.
 Keine Umgehung; Release bleibt unverändert veröffentlicht.
+
+## PR-Prüfung am 2026-11-11
+
+Neue Cloud-Umgebung erreichbar. Sechs offene Dependabot-PRs (#2–#7) anhand ihrer
+Diffs, CI-Ergebnisse und Fehlerprotokolle geprüft. Bericht:
+[PR-Prüfung](docs/reviews/2026-11-11-pull-requests.md).
+PR #5 blockiert durch Python >=3.14 bei weiterhin 3.13 in CI. Die anderen fünf
+Updates bestehen ihre Tests; veraltete HACS-Fehler erneut prüfen lassen.
+Auf Benutzeranweisung nichts veröffentlicht oder gemergt. Bericht lokal speichern;
+keine Veröffentlichung des Umgebungsentwurfs, keine produktiven Änderungen.
+Alle vier HACS-Nachprüfungen erfolgreich. PR #2, #3, #4, #6 und #7 damit grün.
+PR #5 bleibt begründet zurückgestellt; kombinierte Updates noch nicht getestet.
+Dokumentationsprüfung `git diff --check` bestanden; keine Anwendungscodeänderungen.
