@@ -365,3 +365,11 @@ Kombinierter Stand lokal geprüft: jeweils 82 Tests bestanden unter Python 3.13
 und 3.14.8. Ruff 0.17.3 Lint/Format und Bandit 1.9.4 ohne Befund. Keine Assertions
 entfernt und keine Anwendungscodeänderungen erforderlich. GitHub-Matrix nach Push
 prüfen. Kein main-Push, kein neuer Release, keine produktiven Änderungen.
+
+Abschluss bestätigt: PR #2–#7 sämtlich übernommen. Dependabot hatte #4 während
+der Arbeit aktualisiert; dessen abschließender Merge 3b3af06 ist im Dateibaum
+identisch mit dem lokal geprüften Integrationscommit 8cccf7e.
+[GitHub-Lauf 43002179050](https://github.com/Lupusred/ha-sparkyfitness/actions/runs/43002179050)
+vollständig erfolgreich: tests (3.13), tests (3.14), HACS und Hassfest.
+Beide Matrixjobs enthalten Lint, Format, Bandit, Paketbau und getrennte Uploads.
+Alle Änderungen auf develop/sparkyfitness; keine Übernahme nach main oder Release.
